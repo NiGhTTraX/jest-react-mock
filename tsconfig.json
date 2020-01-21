@@ -1,0 +1,8 @@
+{
+  "extends": "tdd-buffet/config/tsconfig",
+
+  "compilerOptions": {
+    "jsx": "react",
+    "types": ["jest"]
+  }
+}
