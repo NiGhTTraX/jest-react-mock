@@ -31,7 +31,8 @@ declare global {
 const reactMockMatcher: ReactMockMatcher = {
   toHaveBeenRendered(this: MatcherContext, mock: ReactMock<any>) {
     return {
-      message: () => 'aaaa',
+      message: () =>
+        `expected component to ${this.isNot ? 'not ' : ''}have been rendered`,
       pass: mock.rendered
     };
   }
