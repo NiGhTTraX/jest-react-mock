@@ -30,9 +30,23 @@ declare global {
 
 const reactMockMatcher: ReactMockMatcher = {
   toHaveBeenRendered(this: MatcherContext, mock: ReactMock<any>) {
+    const { isNot } = this;
+    const { printExpected, printReceived, matcherHint } = this.utils;
+
+    const hint = matcherHint('toHaveBeenRendered', `mock`, '', {
+      isNot
+    });
+    const expected = isNot ? '0' : `>= ${printExpected(1)}`;
+    const received = isNot
+      ? printReceived(mock.renderCalls.length)
+      : `   ${printReceived(mock.renderCalls.length)}`;
+
     return {
       message: () =>
-        `expected component to ${this.isNot ? 'not ' : ''}have been rendered`,
+        `${hint}
+
+Expected number of renders: ${expected}
+Received number of renders: ${received}`,
       pass: mock.rendered
     };
   }
