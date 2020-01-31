@@ -9,7 +9,36 @@ type DeepPartial<T> = T extends object
   : T;
 
 interface ReactMockExpect<P> {
+  /**
+   * Check that the mock has been rendered at least once.
+   */
   toHaveBeenRendered(): void;
+
+  /**
+   * Check that the mock has been rendered at least once with the expected props.
+   *
+   * @param props Will be matched recursively and can support jest matchers.
+   *
+   * @example
+   * ```
+   * const Mock = createReactMock({ foo: number, bar: number });
+   * expect(Mock).toHaveBeenRenderedWith({ foo: 1 });
+   * ```
+   *
+   * @example
+   * ```
+   * const Mock = createReactMock({ foo: number, bar: number });
+   * expect(Mock).toHaveBeenRenderedWith(
+   *   expect.objectContaining({ bar: 23 })
+   * );
+   * ```
+   *
+   * @example
+   * ```
+   * const Mock = createReactMock({ foo: { bar: number} });
+   * expect(Mock).toHaveBeenRenderedWith({ foo: { bar: 1 } });
+   * ```
+   */
   toHaveBeenRenderedWith(props: DeepPartial<P>): void;
 }
 
