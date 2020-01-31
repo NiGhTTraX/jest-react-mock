@@ -116,4 +116,16 @@ Number of renders: 3`
     expect(Mock).toHaveBeenRenderedWith({ bar: 23 });
     expect(Mock).toHaveBeenRenderedWith({});
   });
+
+  it('should support jest matchers', () => {
+    const Mock = createReactMock<{ foo: string; bar: number }>();
+
+    $render(<Mock foo="bar" bar={23} />);
+    $render(<Mock foo="baz" bar={42} />);
+    $render(<Mock foo="baz" bar={43} />);
+
+    expect(Mock).toHaveBeenRenderedWith(
+      expect.objectContaining({ foo: 'bar', bar: expect.any(Number) })
+    );
+  });
 });

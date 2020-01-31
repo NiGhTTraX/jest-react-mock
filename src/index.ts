@@ -38,9 +38,6 @@ function getMatchingCalls<P>(
   expected: P,
   printReceived: (object: any) => string
 ) {
-  if (!mock.renderedWith(expected)) {
-    return '';
-  }
   const matchingCalls: [P, number][] = [];
 
   mock.renderCalls.forEach((props, i) => {
@@ -109,7 +106,7 @@ Received:
 ${received}
 
 Number of renders: ${mock.renderCalls.length}`,
-      pass: mock.renderedWith(props)
+      pass: !!getMatchingCalls(mock, props, printReceived)
     };
   }
 };
