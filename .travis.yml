@@ -10,4 +10,4 @@ script:
   - yarn run test
 
 after_script:
-  - yarn run report-coverage
+  - bash <(curl -s https://codecov.io/bash) -f "tests/results/coverage-final.json"
