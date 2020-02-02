@@ -8,16 +8,16 @@ type DeepPartial<T> = T extends object
   ? { [K in keyof T]?: DeepPartial<T[K]> }
   : T;
 
-interface ReactMockExpect<P> {
+interface ReactMockExpect<Props> {
   /**
    * Check that the mock has been rendered at least once.
    */
   toHaveBeenRendered(): void;
 
   /**
-   * Check that the mock has been rendered at least once with the expected props.
+   * Check that the mock has been rendered at least once with the expected expected.
    *
-   * @param props Will be matched recursively and can support jest matchers.
+   * @param expected Will be matched recursively and can support jest matchers.
    *
    * @example
    * ```
@@ -39,35 +39,37 @@ interface ReactMockExpect<P> {
    * expect(Mock).toHaveBeenRenderedWith({ foo: { bar: 1 } });
    * ```
    */
-  toHaveBeenRenderedWith(props: DeepPartial<P>): void;
+  toHaveBeenRenderedWith(expected: DeepPartial<Props>): void;
 }
 
 type ReactMockMatcher = {
-  [P in keyof ReactMockExpect<any>]: ReactMockExpect<any>[P] extends (
-    ...args: infer A
-  ) => void
-    ? (
-        this: MatcherContext,
-        mock: ReactMock<any>,
-        ...args: A
-      ) => CustomMatcherResult
-    : never;
+  toHaveBeenRendered: (
+    this: MatcherContext,
+    mock: ReactMock<any>
+  ) => CustomMatcherResult;
+  toHaveBeenRenderedWith: <Props>(
+    this: MatcherContext,
+    mock: ReactMock<Props>,
+    expected: DeepPartial<Props>
+  ) => CustomMatcherResult;
 };
 
 declare global {
   namespace jest {
     interface Expect {
-      <P>(mock: ReactMock<P>): ReactMockExpect<P> & { not: ReactMockExpect<P> };
+      <Props>(mock: ReactMock<Props>): ReactMockExpect<Props> & {
+        not: ReactMockExpect<Props>;
+      };
     }
   }
 }
 
-function getMatchingCalls<P>(
-  mock: ReactMock<P>,
-  expected: P,
+function getMatchingCalls<Props>(
+  mock: ReactMock<Props>,
+  expected: DeepPartial<Props>,
   printReceived: (object: any) => string
 ) {
-  const matchingCalls: [P, number][] = [];
+  const matchingCalls: [Props, number][] = [];
 
   mock.renderCalls.forEach((props, i) => {
     try {
@@ -107,10 +109,10 @@ Received number of renders: ${received}`,
     };
   },
 
-  toHaveBeenRenderedWith<P>(
+  toHaveBeenRenderedWith<Props>(
     this: MatcherContext,
-    mock: ReactMock<P>,
-    props: P
+    mock: ReactMock<Props>,
+    expected: DeepPartial<Props>
   ) {
     const { isNot } = this;
     const { printExpected, printReceived, matcherHint } = this.utils;
@@ -119,9 +121,8 @@ Received number of renders: ${received}`,
       isNot
     });
 
-    const expected = printExpected(props);
     const received = isNot
-      ? getMatchingCalls(mock, props, printReceived)
+      ? getMatchingCalls(mock, expected, printReceived)
       : mock.renderCalls
           .map((receivedProps, i) => `  ${i}: ${printReceived(receivedProps)}`)
           .join('\n');
@@ -130,12 +131,12 @@ Received number of renders: ${received}`,
       message: () =>
         `${hint}
 
-Expected: ${isNot ? 'not ' : ''}${expected}
+Expected: ${isNot ? 'not ' : ''}${printExpected(expected)}
 Received:
 ${received}
 
 Number of renders: ${mock.renderCalls.length}`,
-      pass: !!getMatchingCalls(mock, props, printReceived)
+      pass: !!getMatchingCalls(mock, expected, printReceived)
     };
   }
 };
