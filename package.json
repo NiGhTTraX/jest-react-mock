@@ -48,7 +48,7 @@
     "@nighttrax/eslint-config-tsx": "~4.1.1-alpha.0",
     "@tdd-buffet/react": "~0.8.1",
     "@types/jest": "^25.0.0",
-    "@typescript-eslint/eslint-plugin": "~2.19.0",
+    "@typescript-eslint/eslint-plugin": "~2.20.0",
     "eslint": "~6.8.0",
     "eslint-import-resolver-typescript": "~2.0.0",
     "eslint-plugin-import": "~2.20.0",
