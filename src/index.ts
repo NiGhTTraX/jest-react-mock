@@ -10,6 +10,11 @@ type DeepPartial<T> = T extends object
 
 interface ReactMockExpect<Props> {
   /**
+   * Check that the mock is currently mounted.
+   */
+  toBeMounted(): void;
+
+  /**
    * Check that the mock has been rendered at least once.
    */
   toHaveBeenRendered(): void;
@@ -43,6 +48,10 @@ interface ReactMockExpect<Props> {
 }
 
 type ReactMockMatcher = {
+  toBeMounted: (
+    this: MatcherContext,
+    mock: ReactMock<any>
+  ) => CustomMatcherResult;
   toHaveBeenRendered: (
     this: MatcherContext,
     mock: ReactMock<any>
@@ -87,6 +96,28 @@ function getMatchingCalls<Props>(
 }
 
 const reactMockMatcher: ReactMockMatcher = {
+  toBeMounted(this: MatcherContext, mock: ReactMock<any>) {
+    const { isNot } = this;
+    const { printReceived, matcherHint } = this.utils;
+
+    const hint = matcherHint('toBeMounted', `mock`, '', {
+      isNot
+    });
+    const expected = !isNot
+      ? 'Expected the mock to currently be mounted, but it is not.'
+      : `Expected the mock to currently not be mounted, but it is.`;
+    const received = printReceived(mock.renderCalls.length);
+
+    return {
+      message: () =>
+        `${hint}
+
+${expected}
+Previous number of renders: ${received}`,
+      pass: mock.rendered
+    };
+  },
+
   toHaveBeenRendered(this: MatcherContext, mock: ReactMock<any>) {
     const { isNot } = this;
     const { printExpected, printReceived, matcherHint } = this.utils;

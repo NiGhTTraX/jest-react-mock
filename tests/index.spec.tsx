@@ -39,6 +39,31 @@ Received number of renders: 1`
     expect(Mock).toHaveBeenRendered();
   });
 
+  it('should check that a mock is currently mounted', () => {
+    const Mock = createReactMock();
+
+    expectToThrowAnsiless(
+      () => expect(Mock).toBeMounted(),
+      `expect(mock).toBeMounted()
+
+Expected the mock to currently be mounted, but it is not.
+Previous number of renders: 0`
+    );
+
+    expect(Mock).not.toBeMounted();
+
+    $render(<Mock />);
+
+    expectToThrowAnsiless(
+      () => expect(Mock).not.toBeMounted(),
+      `expect(mock).not.toBeMounted()
+
+Expected the mock to currently not be mounted, but it is.
+Previous number of renders: 1`
+    );
+    expect(Mock).toBeMounted();
+  });
+
   it('should check that a mock was rendered with certain props', () => {
     const Mock = createReactMock<{ foo: string }>();
 

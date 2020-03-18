@@ -42,7 +42,7 @@
   "peerDependencies": {
     "@types/jest": "^25.0.0",
     "jest": "^24.9.0",
-    "react-mock-component": "^2.1.0"
+    "react-mock-component": "^2.3.0"
   },
   "devDependencies": {
     "@nighttrax/eslint-config-tsx": "~4.1.1-alpha.0",
@@ -61,7 +61,7 @@
     "prettier": "~1.19.1",
     "react": "~16.13.0",
     "react-dom": "~16.13.0",
-    "react-mock-component": "^2.1.0",
+    "react-mock-component": "^2.3.0",
     "strip-ansi": "~6.0.0",
     "tdd-buffet": "~0.15.4",
     "typescript": "~3.8.0"
