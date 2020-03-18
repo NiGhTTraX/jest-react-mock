@@ -30,6 +30,24 @@ expect.extend(reactMockMatcher);
 
 ## Usage
 
+### `toBeMounted`
+
+Checks that a mock component is currently mounted.
+
+```typescript jsx
+import createReactMock from 'react-mock-component';
+import React from 'react';
+import {render, unmount} from 'react-dom';
+
+const Mock = createReactMock();
+
+expect(Mock).not.toBeMounted();
+render(<Mock />);
+expect(Mock).toBeMounted();
+unmount();
+expect(Mock).not.toBeMounted();
+```
+
 ### `toHaveBeenRendered()`
 
 Checks that a mock component has been rendered at least once.
@@ -47,6 +65,8 @@ render(<Mock />);
 
 expect(Mock).toHaveBeenRendered();
 ```
+
+This is slightly different from `toBeMounted`: if the component gets unmounted `toBeMounted` will throw whereas `toHaveBeenRendered` will continue to pass.
 
 ### `toHaveBeenRenderedWith(props)`
 
