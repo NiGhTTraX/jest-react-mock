@@ -20,29 +20,23 @@ interface ReactMockExpect<Props> {
   toHaveBeenRendered(): void;
 
   /**
-   * Check that the mock has been rendered at least once with the expected expected.
+   * Check that the mock has been rendered at least once with the expected props.
    *
    * @param expected Will be matched recursively and can support jest matchers.
    *
    * @example
-   * ```
    * const Mock = createReactMock({ foo: number, bar: number });
    * expect(Mock).toHaveBeenRenderedWith({ foo: 1 });
-   * ```
    *
    * @example
-   * ```
    * const Mock = createReactMock({ foo: number, bar: number });
    * expect(Mock).toHaveBeenRenderedWith(
    *   expect.objectContaining({ bar: 23 })
    * );
-   * ```
    *
    * @example
-   * ```
    * const Mock = createReactMock({ foo: { bar: number} });
    * expect(Mock).toHaveBeenRenderedWith({ foo: { bar: 1 } });
-   * ```
    */
   toHaveBeenRenderedWith(expected: DeepPartial<Props>): void;
 }
