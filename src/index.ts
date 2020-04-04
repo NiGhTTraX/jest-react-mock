@@ -95,7 +95,7 @@ const reactMockMatcher: ReactMockMatcher = {
     const { printReceived, matcherHint } = this.utils;
 
     const hint = matcherHint('toBeMounted', `mock`, '', {
-      isNot
+      isNot,
     });
     const expected = !isNot
       ? 'Expected the mock to currently be mounted, but it is not.'
@@ -108,7 +108,7 @@ const reactMockMatcher: ReactMockMatcher = {
 
 ${expected}
 Previous number of renders: ${received}`,
-      pass: mock.rendered
+      pass: mock.rendered,
     };
   },
 
@@ -117,7 +117,7 @@ Previous number of renders: ${received}`,
     const { printExpected, printReceived, matcherHint } = this.utils;
 
     const hint = matcherHint('toHaveBeenRendered', `mock`, '', {
-      isNot
+      isNot,
     });
     const expected = isNot ? '0' : `>= ${printExpected(1)}`;
     const received = isNot
@@ -130,7 +130,7 @@ Previous number of renders: ${received}`,
 
 Expected number of renders: ${expected}
 Received number of renders: ${received}`,
-      pass: mock.rendered
+      pass: mock.rendered,
     };
   },
 
@@ -143,7 +143,7 @@ Received number of renders: ${received}`,
     const { printExpected, printReceived, matcherHint } = this.utils;
 
     const hint = matcherHint('toHaveBeenRenderedWith', `mock`, 'props', {
-      isNot
+      isNot,
     });
 
     const received = isNot
@@ -161,9 +161,9 @@ Received:
 ${received}
 
 Number of renders: ${mock.renderCalls.length}`,
-      pass: !!getMatchingCalls(mock, expected, printReceived)
+      pass: !!getMatchingCalls(mock, expected, printReceived),
     };
-  }
+  },
 };
 
 export default reactMockMatcher;

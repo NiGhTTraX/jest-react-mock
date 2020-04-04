@@ -45,7 +45,7 @@
     "react-mock-component": "^2.3.0"
   },
   "devDependencies": {
-    "@nighttrax/eslint-config-tsx": "~4.1.1-alpha.0",
+    "@nighttrax/eslint-config-tsx": "~5.0.0-beta.1",
     "@tdd-buffet/react": "~0.9.0",
     "@typescript-eslint/eslint-plugin": "~2.26.0",
     "eslint": "~6.8.0",
@@ -56,7 +56,7 @@
     "eslint-plugin-react-hooks": "~3.0.0",
     "husky": "~4.2.0",
     "lint-staged": "~10.1.0",
-    "prettier": "~1.19.1",
+    "prettier": "~2.0.0",
     "react": "~16.13.0",
     "react-dom": "~16.13.0",
     "react-mock-component": "^2.3.0",
