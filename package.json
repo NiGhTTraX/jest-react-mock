@@ -55,6 +55,6 @@
     "react-mock-component": "^2.3.0",
     "strip-ansi": "~6.0.0",
     "tdd-buffet": "~0.16.0",
-    "typescript": "~3.8.0"
+    "typescript": "~3.9.0"
   }
 }
