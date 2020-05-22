@@ -874,14 +874,15 @@
     typescript "~3.9.0"
     whatwg-fetch "~3.0.0"
 
-"@tdd-buffet/react@~1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@tdd-buffet/react/-/react-1.0.0.tgz#876fa9a59c3751eb291d04be4260faf6dfb68570"
-  integrity sha512-D+BwgF3TBAOdc+6aJzH7TO5nPVu7EdFY0OqODxtKRZaRTMriH08meGnlIzScwqYELdkYemYuUxjSxirV6Bhy2Q==
+"@tdd-buffet/react@~1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@tdd-buffet/react/-/react-1.1.0.tgz#a100d2882e867add4e2cfea30c9873a2f612480d"
+  integrity sha512-D6OUN+m2EEPKxUeUrwn1H49tJhDYXwtcrkP5vNyc52eseD8klcxULRDm9iPVHXNG14+dhIc+TxmwR93fxmGrdQ==
   dependencies:
     "@testing-library/react" "~10.0.0"
     "@types/jquery" "~3.3.30"
     jquery "~3.5.0"
+    pretty-format "~26.0.1"
 
 "@tdd-buffet/tsconfig@~1.0.0":
   version "1.0.0"
@@ -5095,7 +5096,7 @@ pretty-format@^25.2.1, pretty-format@^25.5.0:
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
 
-pretty-format@^26.0.1:
+pretty-format@^26.0.1, pretty-format@~26.0.1:
   version "26.0.1"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-26.0.1.tgz#a4fe54fe428ad2fd3413ca6bbd1ec8c2e277e197"
   integrity sha512-SWxz6MbupT3ZSlL0Po4WF/KujhQaVehijR2blyRDCzk9e45EaYMVhMBn49fnRuHxtkSpXTes1GxNpVmH86Bxfw==
