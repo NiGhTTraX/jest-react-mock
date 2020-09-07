@@ -51,7 +51,7 @@
     "@tdd-buffet/jest-config": "~2.0.0",
     "@types/jest": "~26.0.0",
     "eslint": "~7.8.0",
-    "husky": "~4.2.0",
+    "husky": "~4.3.0",
     "jest": "^26.0.0",
     "lint-staged": "~10.3.0",
     "react": "~16.13.0",
