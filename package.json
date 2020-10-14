@@ -54,8 +54,8 @@
     "husky": "~4.3.0",
     "jest": "^26.0.0",
     "lint-staged": "~10.4.0",
-    "react": "~16.13.0",
-    "react-dom": "~16.13.0",
+    "react": "~16.14.0",
+    "react-dom": "~16.14.0",
     "react-mock-component": "^2.3.0",
     "strip-ansi": "~6.0.0",
     "typescript": "~3.9.0"
