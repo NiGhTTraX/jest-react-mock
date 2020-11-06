@@ -167,6 +167,23 @@ Number of renders: 2`
     expect(Mock).toHaveProps({ foo: 'baz' });
   });
 
+  it('should support IDE integration for last props diff', () => {
+    const Mock = createReactMock<{ foo: string }>();
+
+    $render(<Mock foo="bar" />);
+
+    const shouldThrow = () => expect(Mock).toHaveProps({ foo: 'baz' });
+
+    expect(shouldThrow).toThrow();
+
+    try {
+      shouldThrow();
+    } catch (e) {
+      expect(e.matcherResult.actual).toEqual({ foo: 'bar' });
+      expect(e.matcherResult.expected).toEqual({ foo: 'baz' });
+    }
+  });
+
   it('should support jest matchers for renderedWith', () => {
     const Mock = createReactMock<{ foo: string; bar: number[] }>();
 

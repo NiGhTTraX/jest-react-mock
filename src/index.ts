@@ -78,25 +78,21 @@ interface ReactMockExpect<Props> {
   toHaveProps(expected: DeepPartial<Props>): void;
 }
 
+type Result = CustomMatcherResult & { actual?: any; expected?: any };
+
 type ReactMockMatcher = {
-  toBeMounted: (
-    this: MatcherContext,
-    mock: ReactMock<any>
-  ) => CustomMatcherResult;
-  toHaveBeenRendered: (
-    this: MatcherContext,
-    mock: ReactMock<any>
-  ) => CustomMatcherResult;
+  toBeMounted: (this: MatcherContext, mock: ReactMock<any>) => Result;
+  toHaveBeenRendered: (this: MatcherContext, mock: ReactMock<any>) => Result;
   toHaveBeenRenderedWith: <Props>(
     this: MatcherContext,
     mock: ReactMock<Props>,
     expected: DeepPartial<Props>
-  ) => CustomMatcherResult;
+  ) => Result;
   toHaveProps: <Props>(
     this: MatcherContext,
     mock: ReactMock<Props>,
     expected: DeepPartial<Props>
-  ) => CustomMatcherResult;
+  ) => Result;
 };
 
 declare global {
@@ -228,6 +224,8 @@ ${diff(mock.lastProps, expected)}
 
 Number of renders: ${mock.renderCalls.length}`,
       pass: equals(mock.lastProps, expected),
+      actual: mock.lastProps,
+      expected,
     };
   },
 };
