@@ -70,21 +70,18 @@ Previous number of renders: 1`
     $render(<Mock foo="bar" />);
     $render(<Mock foo="baz" />);
 
-    expectToThrowAnsiless(
-      () => expect(Mock).toHaveBeenRenderedWith({ foo: 'no' }),
-      `expect(mock).toHaveBeenRenderedWith(props)
-
-Expected: {"foo": "no"}
-Received:
-  0: {"foo": "bar"}
-  1: {"foo": "baz"}
-
-Number of renders: 2`
-    );
-
+    expect(() => expect(Mock).toHaveBeenRenderedWith({ foo: 'no' })).toThrow();
     expect(Mock).not.toHaveBeenRenderedWith({ foo: 'no' });
+
     expect(Mock).toHaveBeenRenderedWith({ foo: 'bar' });
+    expect(() =>
+      expect(Mock).not.toHaveBeenRenderedWith({ foo: 'bar' })
+    ).toThrow();
+
     expect(Mock).toHaveBeenRenderedWith({ foo: 'baz' });
+    expect(() =>
+      expect(Mock).not.toHaveBeenRenderedWith({ foo: 'baz' })
+    ).toThrow();
   });
 
   it('should check that a mock was rendered with partial props', () => {
@@ -93,21 +90,21 @@ Number of renders: 2`
     $render(<Mock foo="bar" bar={23} />);
     $render(<Mock foo="baz" bar={42} />);
 
-    expectToThrowAnsiless(
-      () => expect(Mock).toHaveBeenRenderedWith({ foo: 'no' }),
-      `expect(mock).toHaveBeenRenderedWith(props)
-
-Expected: {"foo": "no"}
-Received:
-  0: {"bar": 23, "foo": "bar"}
-  1: {"bar": 42, "foo": "baz"}
-
-Number of renders: 2`
-    );
+    expect(() => expect(Mock).toHaveBeenRenderedWith({ foo: 'no' })).toThrow();
+    expect(Mock).not.toHaveBeenRenderedWith({ foo: 'no' });
 
     expect(Mock).toHaveBeenRenderedWith({ foo: 'bar' });
+    expect(() =>
+      expect(Mock).not.toHaveBeenRenderedWith({ foo: 'bar' })
+    ).toThrow();
+
     expect(Mock).toHaveBeenRenderedWith({ bar: 23 });
+    expect(() =>
+      expect(Mock).not.toHaveBeenRenderedWith({ bar: 23 })
+    ).toThrow();
+
     expect(Mock).toHaveBeenRenderedWith({});
+    expect(() => expect(Mock).not.toHaveBeenRenderedWith({})).toThrow();
   });
 
   it('should check that a mock was rendered with partial nested props', () => {
@@ -116,15 +113,35 @@ Number of renders: 2`
     $render(<Mock foo={{ bar: 23, baz: true }} />);
 
     expect(Mock).toHaveBeenRenderedWith({ foo: { bar: 23 } });
+    expect(() =>
+      expect(Mock).not.toHaveBeenRenderedWith({ foo: { bar: 23 } })
+    ).toThrow();
+
     expect(Mock).toHaveBeenRenderedWith({ foo: { baz: true } });
+    expect(() =>
+      expect(Mock).not.toHaveBeenRenderedWith({ foo: { baz: true } })
+    ).toThrow();
   });
 
-  it('should print all props that match for failed negated expectation', () => {
+  it('should print all renders for failed renderedWith', () => {
     const Mock = createReactMock<{ foo: string; bar: number }>();
 
-    $render(<Mock foo="bar" bar={23} />);
-    $render(<Mock foo="baz" bar={42} />);
-    $render(<Mock foo="baz" bar={43} />);
+    $render(<Mock foo="bar" bar={1} />);
+    $render(<Mock foo="baz" bar={2} />);
+    $render(<Mock foo="baz" bar={3} />);
+
+    expectToThrowAnsiless(
+      () => expect(Mock).toHaveBeenRenderedWith({ foo: 'bla' }),
+      `expect(mock).toHaveBeenRenderedWith(props)
+
+Expected: {"foo": "bla"}
+Received:
+  0: {"bar": 1, "foo": "bar"}
+  1: {"bar": 2, "foo": "baz"}
+  2: {"bar": 3, "foo": "baz"}
+
+Number of renders: 3`
+    );
 
     expectToThrowAnsiless(
       () => expect(Mock).not.toHaveBeenRenderedWith({ foo: 'baz' }),
@@ -132,14 +149,11 @@ Number of renders: 2`
 
 Expected: not {"foo": "baz"}
 Received:
-  1: {"bar": 42, "foo": "baz"}
-  2: {"bar": 43, "foo": "baz"}
+  1: {"bar": 2, "foo": "baz"}
+  2: {"bar": 3, "foo": "baz"}
 
 Number of renders: 3`
     );
-    expect(Mock).toHaveBeenRenderedWith({ foo: 'bar' });
-    expect(Mock).toHaveBeenRenderedWith({ bar: 23 });
-    expect(Mock).toHaveBeenRenderedWith({});
   });
 
   it('should check that a mock has last props', () => {
