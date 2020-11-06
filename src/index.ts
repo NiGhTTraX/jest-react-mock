@@ -11,11 +11,18 @@ type DeepPartial<T> = T extends object
 interface ReactMockExpect<Props> {
   /**
    * Check that the mock is currently mounted.
+   *
+   * @see toHaveBeenRendered
    */
   toBeMounted(): void;
 
   /**
    * Check that the mock has been rendered at least once.
+   *
+   * If the component was rendered and then unmounted, this expectation will
+   * still pass.
+   *
+   * @see toBeMounted
    */
   toHaveBeenRendered(): void;
 
