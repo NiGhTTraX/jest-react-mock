@@ -152,8 +152,13 @@ Number of renders: 3`
       () => expect(Mock).toHaveProps({ foo: 'no' }),
       `expect(mock).toHaveProps(props)
 
-Expected: {"foo": "no"}
-Received: {"foo": "baz"}
+- Expected
++ Received
+
+  Object {
+-   "foo": "baz",
++   "foo": "no",
+  }
 
 Number of renders: 2`
     );
