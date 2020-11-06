@@ -22,6 +22,10 @@ interface ReactMockExpect<Props> {
   /**
    * Check that the mock has been rendered at least once with the expected props.
    *
+   * If you want to check only the last render use `toHaveProps`.
+   *
+   * @see toHaveProps
+   *
    * @param expected Will be matched recursively and can support jest matchers.
    *
    * @example
@@ -39,6 +43,32 @@ interface ReactMockExpect<Props> {
    * expect(Mock).toHaveBeenRenderedWith({ foo: { bar: 1 } });
    */
   toHaveBeenRenderedWith(expected: DeepPartial<Props>): void;
+
+  /**
+   * Check that the last received props match the expected ones.
+   *
+   * As opposed to `toHaveBeenRenderedWith`, `toHaveProps` only checks the
+   * last render.
+   *
+   * @see toHaveBeenRenderedWith
+   *
+   * @param expected Will be matched recursively and can support jest matchers.
+   *
+   * @example
+   * const Mock = createReactMock({ foo: number, bar: number });
+   * expect(Mock).toHaveProps({ foo: 1 });
+   *
+   * @example
+   * const Mock = createReactMock({ foo: number, bar: number });
+   * expect(Mock).toHaveProps(
+   *   expect.objectContaining({ bar: 23 })
+   * );
+   *
+   * @example
+   * const Mock = createReactMock({ foo: { bar: number} });
+   * expect(Mock).toHaveProps({ foo: { bar: 1 } });
+   */
+  toHaveProps(expected: DeepPartial<Props>): void;
 }
 
 type ReactMockMatcher = {
@@ -55,10 +85,16 @@ type ReactMockMatcher = {
     mock: ReactMock<Props>,
     expected: DeepPartial<Props>
   ) => CustomMatcherResult;
+  toHaveProps: <Props>(
+    this: MatcherContext,
+    mock: ReactMock<Props>,
+    expected: DeepPartial<Props>
+  ) => CustomMatcherResult;
 };
 
 declare global {
   namespace jest {
+    // noinspection JSUnusedGlobalSymbols
     interface Expect {
       <Props>(mock: ReactMock<Props>): ReactMockExpect<Props> & {
         not: ReactMockExpect<Props>;
@@ -159,6 +195,30 @@ Received number of renders: ${received}`,
 Expected: ${isNot ? 'not ' : ''}${printExpected(expected)}
 Received:
 ${received}
+
+Number of renders: ${mock.renderCalls.length}`,
+      pass: !!getMatchingCalls(mock, expected, printReceived),
+    };
+  },
+
+  toHaveProps<Props>(
+    this: MatcherContext,
+    mock: ReactMock<Props>,
+    expected: DeepPartial<Props>
+  ) {
+    const { isNot } = this;
+    const { printExpected, printReceived, matcherHint } = this.utils;
+
+    const hint = matcherHint('toHaveProps', `mock`, 'props', {
+      isNot,
+    });
+
+    return {
+      message: () =>
+        `${hint}
+
+Expected: ${isNot ? 'not ' : ''}${printExpected(expected)}
+Received: ${printReceived(mock.lastProps)}
 
 Number of renders: ${mock.renderCalls.length}`,
       pass: !!getMatchingCalls(mock, expected, printReceived),
