@@ -1,3 +1,4 @@
+<!--suppress HtmlDeprecatedAttribute -->
 <div align="center">
 <h2><a href="https://jestjs.io">jest</a> matcher for <a href="https://github.com/NiGhTTraX/react-mock-component">react-mock-component</a></h2>
 
