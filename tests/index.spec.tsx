@@ -158,11 +158,11 @@ Received: {"foo": "baz"}
 Number of renders: 2`
     );
 
-    expect(Mock).not.toHaveProps({ foo: 'no' });
+    expect(Mock).not.toHaveProps({ foo: 'bar' });
     expect(Mock).toHaveProps({ foo: 'baz' });
   });
 
-  it('should support jest matchers', () => {
+  it('should support jest matchers for renderedWith', () => {
     const Mock = createReactMock<{ foo: string; bar: number[] }>();
 
     $render(<Mock foo="bar" bar={[1, 2, 3]} />);
@@ -171,6 +171,16 @@ Number of renders: 2`
 
     expect(Mock).toHaveBeenRenderedWith(
       expect.objectContaining({ bar: expect.arrayContaining([4, 6]) })
+    );
+  });
+
+  it('should support jest matchers for last props', () => {
+    const Mock = createReactMock<{ foo: string; bar: number[] }>();
+
+    $render(<Mock foo="bar" bar={[1, 2, 3]} />);
+
+    expect(Mock).toHaveProps(
+      expect.objectContaining({ bar: expect.arrayContaining([2, 3]) })
     );
   });
 });

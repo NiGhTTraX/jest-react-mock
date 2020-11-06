@@ -213,7 +213,7 @@ Number of renders: ${mock.renderCalls.length}`,
     mock: ReactMock<Props>,
     expected: DeepPartial<Props>
   ) {
-    const { isNot } = this;
+    const { isNot, equals } = this;
     const { printExpected, printReceived, matcherHint } = this.utils;
 
     const hint = matcherHint('toHaveProps', `mock`, 'props', {
@@ -228,7 +228,7 @@ Expected: ${isNot ? 'not ' : ''}${printExpected(expected)}
 Received: ${printReceived(mock.lastProps)}
 
 Number of renders: ${mock.renderCalls.length}`,
-      pass: !!getMatchingCalls(mock, expected, printReceived),
+      pass: equals(mock.lastProps, expected),
     };
   },
 };
