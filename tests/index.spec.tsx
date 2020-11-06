@@ -142,6 +142,26 @@ Number of renders: 3`
     expect(Mock).toHaveBeenRenderedWith({});
   });
 
+  it('should check that a mock has last props', () => {
+    const Mock = createReactMock<{ foo: string }>();
+
+    $render(<Mock foo="bar" />);
+    $render(<Mock foo="baz" />);
+
+    expectToThrowAnsiless(
+      () => expect(Mock).toHaveProps({ foo: 'no' }),
+      `expect(mock).toHaveProps(props)
+
+Expected: {"foo": "no"}
+Received: {"foo": "baz"}
+
+Number of renders: 2`
+    );
+
+    expect(Mock).not.toHaveProps({ foo: 'no' });
+    expect(Mock).toHaveProps({ foo: 'baz' });
+  });
+
   it('should support jest matchers', () => {
     const Mock = createReactMock<{ foo: string; bar: number[] }>();
 

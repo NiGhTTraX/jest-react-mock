@@ -70,7 +70,7 @@ This is slightly different from `toBeMounted`: if the component gets unmounted `
 
 ### `toHaveBeenRenderedWith(props)`
 
-Checks that a mock component has been rendered with certain props at least once.
+Checks that a mock component has been rendered with the expected props at least once. If you want to check only the last render then use [`toHaveProps`](#tohavepropsprops).
 You can pass a subset of the props and they will be deeply matched against the received ones.
 
 
@@ -84,4 +84,22 @@ const Mock = createReactMock<{ foo: string, bar: number }>();
 render(<Mock foo="bar" bar={42} />);
 
 expect(Mock).toHaveBeenRenderedWith({ foo: 'bar' });
+```
+
+### `toHaveProps(props)`
+
+Checks that a mock component's last received props match the expected ones. If you want the check all renders and not just the last one then use [`toHaveBeenRenderedWith`](#tohavebeenrenderedwithprops). 
+You can pass a subset of the props and they will be deeply matched against the received ones.
+
+
+```typescript jsx
+import createReactMock from 'react-mock-component';
+import React from 'react';
+import {render} from 'react-dom';
+
+const Mock = createReactMock<{ foo: string, bar: number }>();
+
+render(<Mock foo="bar" bar={42} />);
+
+expect(Mock).toHaveProps({ foo: 'bar' });
 ```
