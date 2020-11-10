@@ -108,20 +108,33 @@ declare global {
 
 type IndexedRender<Props> = [number, Props];
 
+/**
+ * Recursively match props.
+ */
+function deepEquals<Props>(
+  received: Props,
+  expected: DeepPartial<Props>
+): boolean {
+  try {
+    // expect in expect, yeah.
+    expect(received).toMatchObject(expected);
+
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 function getMatchingCalls<Props>(
   mock: ReactMock<Props>,
   expected: DeepPartial<Props>
 ): IndexedRender<Props>[] {
   const matchingCalls: IndexedRender<Props>[] = [];
 
-  mock.renderCalls.forEach((props, i) => {
-    try {
-      // expect in expect, yeah.
-      expect(props).toMatchObject(expected);
-
-      matchingCalls.push([i, props]);
-      // eslint-disable-next-line no-empty
-    } catch (e) {}
+  mock.renderCalls.forEach((received, i) => {
+    if (deepEquals(received, expected)) {
+      matchingCalls.push([i, received]);
+    }
   });
 
   return matchingCalls;
@@ -240,7 +253,7 @@ ${outro}`,
     mock: ReactMock<Props>,
     expected: DeepPartial<Props>
   ) {
-    const { isNot, equals } = this;
+    const { isNot } = this;
     const {
       matcherHint,
       diff,
@@ -254,7 +267,7 @@ ${outro}`,
       isNot,
     });
 
-    const pass = equals(mock.lastProps, expected);
+    const pass = deepEquals(mock.lastProps, expected);
 
     return {
       message: () =>

@@ -235,6 +235,17 @@ Total number of renders: 3`
       }
     });
 
+    it('should support partial nesting', () => {
+      const Mock = createReactMock<{ foo: { bar: number; baz: boolean } }>();
+
+      $render(<Mock foo={{ bar: 23, baz: false }} />);
+
+      expect(Mock).toHaveProps({ foo: { bar: 23 } });
+      expect(() => expect(Mock).toHaveProps({ foo: { bar: 24 } })).toThrow();
+      expect(Mock).toHaveProps({ foo: { baz: false } });
+      expect(() => expect(Mock).toHaveProps({ foo: { baz: true } })).toThrow();
+    });
+
     it('should support jest matchers', () => {
       const Mock = createReactMock<{ foo: string; bar: number[] }>();
 
