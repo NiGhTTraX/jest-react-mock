@@ -68,28 +68,49 @@ Previous number of renders: 1`
   });
 
   describe('toHaveBeenRendered', () => {
-    it('should check that a mock was rendered', () => {
-      const Mock = createReactMock();
+    const Mock = createReactMock();
 
-      expectToThrowAnsiless(
-        () => expect(Mock).toHaveBeenRendered(),
-        `expect(mock).toHaveBeenRendered()
+    beforeEach(() => {
+      Mock.reset();
+    });
+
+    it('should check that a mock was rendered', () => {
+      expect(Mock).not.toHaveBeenRendered();
+      expect(() => expect(Mock).toHaveBeenRendered()).toThrow();
+
+      $render(<Mock />);
+
+      expect(Mock).toHaveBeenRendered();
+      expect(() => expect(Mock).not.toHaveBeenRendered()).toThrow();
+
+      $unmount();
+
+      expect(Mock).toHaveBeenRendered();
+      expect(() => expect(Mock).not.toHaveBeenRendered()).toThrow();
+    });
+
+    describe('error messages', () => {
+      it('positive', () => {
+        expectToThrowAnsiless(
+          () => expect(Mock).toHaveBeenRendered(),
+          `expect(mock).toHaveBeenRendered()
 
 Expected number of renders: >= 1
 Received number of renders:    0`
-      );
+        );
+      });
 
-      expect(Mock).not.toHaveBeenRendered();
+      it('negative', () => {
+        $render(<Mock />);
 
-      $render(<Mock />);
-      expectToThrowAnsiless(
-        () => expect(Mock).not.toHaveBeenRendered(),
-        `expect(mock).not.toHaveBeenRendered()
+        expectToThrowAnsiless(
+          () => expect(Mock).not.toHaveBeenRendered(),
+          `expect(mock).not.toHaveBeenRendered()
 
 Expected number of renders: 0
 Received number of renders: 1`
-      );
-      expect(Mock).toHaveBeenRendered();
+        );
+      });
     });
   });
 
