@@ -159,7 +159,7 @@ const reactMockMatcher: ReactMockMatcher = {
 
 ${expected}
 Previous number of renders: ${received}`,
-      pass: mock.rendered,
+      pass: mock.mounted,
     };
   },
 

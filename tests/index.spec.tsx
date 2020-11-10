@@ -1,5 +1,5 @@
+import { $render, $unmount } from '@tdd-buffet/react';
 import React from 'react';
-import { $render } from '@tdd-buffet/react';
 import createReactMock from 'react-mock-component';
 import stripAnsi from 'strip-ansi';
 import reactMockMatcher from '../src';
@@ -18,29 +18,52 @@ describe('jest-react-mock', () => {
   expect.extend(reactMockMatcher);
 
   describe('toBeMounted', () => {
-    it('should check that a mock is currently mounted', () => {
+    it('should check that a mock is currently mounted', async () => {
       const Mock = createReactMock();
-
-      expectToThrowAnsiless(
-        () => expect(Mock).toBeMounted(),
-        `expect(mock).toBeMounted()
-
-Expected the mock to currently be mounted, but it is not.
-Previous number of renders: 0`
-      );
+      Mock.withProps({}).renders(<span>foo</span>);
 
       expect(Mock).not.toBeMounted();
+      expect(() => expect(Mock).toBeMounted()).toThrow();
 
       $render(<Mock />);
 
-      expectToThrowAnsiless(
-        () => expect(Mock).not.toBeMounted(),
-        `expect(mock).not.toBeMounted()
+      expect(Mock).toBeMounted();
+      expect(() => expect(Mock).not.toBeMounted()).toThrow();
+
+      $unmount();
+
+      expect(Mock).not.toBeMounted();
+      expect(() => expect(Mock).toBeMounted()).toThrow();
+    });
+
+    describe('error messages', () => {
+      const Mock = createReactMock();
+
+      beforeEach(() => {
+        Mock.reset();
+      });
+
+      it('positive', () => {
+        expectToThrowAnsiless(
+          () => expect(Mock).toBeMounted(),
+          `expect(mock).toBeMounted()
+
+Expected the mock to currently be mounted, but it is not.
+Previous number of renders: 0`
+        );
+      });
+
+      it('negative', () => {
+        $render(<Mock />);
+
+        expectToThrowAnsiless(
+          () => expect(Mock).not.toBeMounted(),
+          `expect(mock).not.toBeMounted()
 
 Expected the mock to currently not be mounted, but it is.
 Previous number of renders: 1`
-      );
-      expect(Mock).toBeMounted();
+        );
+      });
     });
   });
 
