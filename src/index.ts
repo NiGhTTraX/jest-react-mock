@@ -106,26 +106,25 @@ declare global {
   }
 }
 
+type IndexedRender<Props> = [number, Props];
+
 function getMatchingCalls<Props>(
   mock: ReactMock<Props>,
-  expected: DeepPartial<Props>,
-  printReceived: (object: any) => string
-) {
-  const matchingCalls: [Props, number][] = [];
+  expected: DeepPartial<Props>
+): IndexedRender<Props>[] {
+  const matchingCalls: IndexedRender<Props>[] = [];
 
   mock.renderCalls.forEach((props, i) => {
     try {
       // expect in expect, yeah.
       expect(props).toMatchObject(expected);
 
-      matchingCalls.push([props, i]);
+      matchingCalls.push([i, props]);
       // eslint-disable-next-line no-empty
     } catch (e) {}
   });
 
-  return matchingCalls
-    .map(([props, i]) => `  ${i}: ${printReceived(props)}`)
-    .join('\n');
+  return matchingCalls;
 }
 
 const reactMockMatcher: ReactMockMatcher = {
@@ -179,28 +178,60 @@ Received number of renders: ${received}`,
     expected: DeepPartial<Props>
   ) {
     const { isNot } = this;
-    const { printExpected, printReceived, matcherHint } = this.utils;
+    const {
+      printExpected,
+      printReceived,
+      matcherHint,
+      EXPECTED_COLOR,
+      RECEIVED_COLOR,
+      diff,
+    } = this.utils;
 
     const hint = matcherHint('toHaveBeenRenderedWith', `mock`, 'props', {
       isNot,
     });
 
-    const received = isNot
-      ? getMatchingCalls(mock, expected, printReceived)
-      : mock.renderCalls
-          .map((receivedProps, i) => `  ${i}: ${printReceived(receivedProps)}`)
-          .join('\n');
+    const matchingCalls = getMatchingCalls(mock, expected);
+    const calls: IndexedRender<Props>[] = mock.renderCalls.map((props, i) => [
+      i,
+      props,
+    ]);
 
-    return {
-      message: () =>
-        `${hint}
+    const pass = matchingCalls.length > 0;
+
+    const indentation = '    ';
+
+    const intro = `${hint}
 
 Expected: ${isNot ? 'not ' : ''}${printExpected(expected)}
-Received:
-${received}
+Received:`;
 
-Number of renders: ${mock.renderCalls.length}`,
-      pass: !!getMatchingCalls(mock, expected, printReceived),
+    const outro = `
+Total number of renders: ${mock.renderCalls.length}`;
+
+    return {
+      message: !pass
+        ? () => `${intro}
+${EXPECTED_COLOR('- Expected')}
+${RECEIVED_COLOR('+ Received')}
+${calls
+  .map(
+    ([i, received]) =>
+      `${indentation}Render ${i}\n${indentation}${diff(expected, received)
+        ?.split('\n')
+        .slice(3)
+        .join(`\n${indentation}`)}`
+  )
+  .join('\n')}
+${outro}`
+        : () => `${intro}
+${matchingCalls
+  .map(
+    ([i, received]) => `${indentation}Render ${i}: ${printReceived(received)}`
+  )
+  .join('\n')}
+${outro}`,
+      pass,
     };
   },
 
@@ -210,20 +241,36 @@ Number of renders: ${mock.renderCalls.length}`,
     expected: DeepPartial<Props>
   ) {
     const { isNot, equals } = this;
-    const { matcherHint, diff } = this.utils;
+    const {
+      matcherHint,
+      diff,
+      printExpected,
+      printReceived,
+      EXPECTED_COLOR,
+      RECEIVED_COLOR,
+    } = this.utils;
 
     const hint = matcherHint('toHaveProps', `mock`, 'props', {
       isNot,
     });
 
+    const pass = equals(mock.lastProps, expected);
+
     return {
       message: () =>
-        `${hint}
+        !pass
+          ? `${hint}
 
 ${diff(mock.lastProps, expected)}
 
+Number of renders: ${mock.renderCalls.length}`
+          : `${hint}
+
+${EXPECTED_COLOR('Expected: ')}not ${printExpected(expected)}
+${RECEIVED_COLOR('Received: ')}${printReceived(mock.lastProps)}
+
 Number of renders: ${mock.renderCalls.length}`,
-      pass: equals(mock.lastProps, expected),
+      pass,
       actual: mock.lastProps,
       expected,
     };
