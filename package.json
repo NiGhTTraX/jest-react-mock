@@ -50,7 +50,7 @@
     "@tdd-buffet/react": "~1.2.0",
     "@tdd-buffet/tsconfig": "~1.0.0",
     "@types/jest": "~26.0.0",
-    "eslint": "~7.13.0",
+    "eslint": "~7.14.0",
     "husky": "~4.3.0",
     "jest": "^26.0.0",
     "lint-staged": "~10.5.0",
