@@ -230,8 +230,9 @@ ${RECEIVED_COLOR('+ Received')}
 ${calls
   .map(
     ([i, received]) =>
-      `${indentation}Render ${i}\n${indentation}${diff(expected, received)
-        ?.split('\n')
+      // diff should always produce a result as we're showing calls that DIDN'T match.
+      `${indentation}Render ${i}\n${indentation}${diff(expected, received)!
+        .split('\n')
         .slice(3)
         .join(`\n${indentation}`)}`
   )
