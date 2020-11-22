@@ -231,9 +231,14 @@ Received:`;
     const outro = `
 Total number of renders: ${mock.renderCalls.length}`;
 
-    return {
-      message: !pass
-        ? () => `${intro}
+    const isOnlyCall = calls.length === 1;
+
+    const diffNonMatchingCalls = () => {
+      if (isOnlyCall) {
+        return `${hint}\n\n${diff(expected, calls[0][1])!}\n${outro}`;
+      }
+
+      return `${intro}
 ${EXPECTED_COLOR('- Expected')}
 ${RECEIVED_COLOR('+ Received')}
 ${indent(
@@ -246,7 +251,12 @@ ${indent(
     )
     .join(`\n`)
 )}
-${outro}`
+${outro}`;
+    };
+
+    return {
+      message: !pass
+        ? diffNonMatchingCalls
         : () => `${intro}
 ${indent(
   matchingCalls
@@ -255,6 +265,8 @@ ${indent(
 )}
 ${outro}`,
       pass,
+      actual: isOnlyCall ? calls[0][1] : undefined,
+      expected: isOnlyCall ? expected : undefined,
     };
   },
 

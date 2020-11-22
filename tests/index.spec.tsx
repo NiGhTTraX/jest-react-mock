@@ -190,18 +190,47 @@ Received number of renders: 1`
       );
     });
 
+    it('should support IDE integration for diff if only one call', () => {
+      const Mock = createReactMock<{ foo: string }>();
+
+      $render(<Mock foo="bar" />);
+
+      const shouldThrow = () =>
+        expect(Mock).toHaveBeenRenderedWith({ foo: 'baz' });
+
+      expect(shouldThrow).toThrow();
+
+      try {
+        shouldThrow();
+      } catch (e) {
+        expect(e.matcherResult.actual).toEqual({ foo: 'bar' });
+        expect(e.matcherResult.expected).toEqual({ foo: 'baz' });
+      }
+
+      $render(<Mock foo="bar" />);
+
+      expect(shouldThrow).toThrow();
+
+      try {
+        shouldThrow();
+      } catch (e) {
+        expect(e.matcherResult.actual).toBeUndefined();
+        expect(e.matcherResult.expected).toBeUndefined();
+      }
+    });
+
     describe('error messages', () => {
       const Mock = createReactMock<{ foo: string; bar: number }>();
 
       beforeEach(() => {
         Mock.reset();
-
-        $render(<Mock foo="bar" bar={1} />);
-        $render(<Mock foo="baz" bar={2} />);
-        $render(<Mock foo="baz" bar={3} />);
       });
 
       it('should contain all renders with diffs for positive expectations', () => {
+        $render(<Mock foo="bar" bar={1} />);
+        $render(<Mock foo="baz" bar={2} />);
+        $render(<Mock foo="baz" bar={3} />);
+
         expectToThrowAnsiless(
           () => expect(Mock).toHaveBeenRenderedWith({ foo: 'bla' }),
           `expect(mock).toHaveBeenRenderedWith(props)
@@ -234,6 +263,10 @@ Total number of renders: 3`
       });
 
       it('should contain all matching renders for negative expectations', () => {
+        $render(<Mock foo="bar" bar={1} />);
+        $render(<Mock foo="baz" bar={2} />);
+        $render(<Mock foo="baz" bar={3} />);
+
         expectToThrowAnsiless(
           () => expect(Mock).not.toHaveBeenRenderedWith({ foo: 'baz' }),
           `expect(mock).not.toHaveBeenRenderedWith(props)
@@ -244,6 +277,26 @@ Received:
     Render 2: {"bar": 3, "foo": "baz"}
 
 Total number of renders: 3`
+        );
+      });
+
+      it('should diff the only call', () => {
+        $render(<Mock foo="bar" bar={1} />);
+
+        expectToThrowAnsiless(
+          () => expect(Mock).toHaveBeenRenderedWith({ foo: 'bla' }),
+          `expect(mock).toHaveBeenRenderedWith(props)
+
+- Expected
++ Received
+
+  Object {
+-   "foo": "bla",
++   "bar": 1,
++   "foo": "bar",
+  }
+
+Total number of renders: 1`
         );
       });
     });
