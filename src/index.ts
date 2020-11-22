@@ -1,12 +1,9 @@
 import { ReactMock } from 'react-mock-component';
-// eslint-disable-next-line no-use-before-define
-import MatcherContext = jest.MatcherContext;
+import { DeepPartial, diffProps } from './utils';
 // eslint-disable-next-line no-use-before-define
 import CustomMatcherResult = jest.CustomMatcherResult;
-
-type DeepPartial<T> = T extends object
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : T;
+// eslint-disable-next-line no-use-before-define
+import MatcherContext = jest.MatcherContext;
 
 interface ReactMockExpect<Props> {
   /**
@@ -208,7 +205,6 @@ Received number of renders: ${received}`,
       matcherHint,
       EXPECTED_COLOR,
       RECEIVED_COLOR,
-      diff,
     } = this.utils;
 
     const hint = matcherHint('toHaveBeenRenderedWith', `mock`, 'props', {
@@ -235,7 +231,13 @@ Total number of renders: ${mock.renderCalls.length}`;
 
     const diffNonMatchingCalls = () => {
       if (isOnlyCall) {
-        return `${hint}\n\n${diff(expected, calls[0][1])!}\n${outro}`;
+        return `${hint}
+
+${EXPECTED_COLOR('- Expected')}
+${RECEIVED_COLOR('+ Received')}
+
+${diffProps(calls[0][1], expected)!}
+${outro}`;
       }
 
       return `${intro}
@@ -246,7 +248,7 @@ ${indent(
     .map(
       printCall(
         expected,
-        (b, a) => `\n${diff(a, b)!.split('\n').slice(3).join(`\n`)}`
+        (actual, expected2) => `\n${diffProps(actual, expected2)}`
       )
     )
     .join(`\n`)
@@ -278,7 +280,6 @@ ${outro}`,
     const { isNot } = this;
     const {
       matcherHint,
-      diff,
       printExpected,
       printReceived,
       EXPECTED_COLOR,
@@ -296,7 +297,10 @@ ${outro}`,
         !pass
           ? `${hint}
 
-${diff(mock.lastProps, expected)}
+${EXPECTED_COLOR('- Expected')}
+${RECEIVED_COLOR('+ Received')}
+
+${diffProps(mock.lastProps, expected)}
 
 Number of renders: ${mock.renderCalls.length}`
           : `${hint}

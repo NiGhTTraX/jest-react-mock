@@ -242,19 +242,16 @@ Received:
     Render 0:
       Object {
     -   "foo": "bla",
-    +   "bar": 1,
     +   "foo": "bar",
       }
     Render 1:
       Object {
     -   "foo": "bla",
-    +   "bar": 2,
     +   "foo": "baz",
       }
     Render 2:
       Object {
     -   "foo": "bla",
-    +   "bar": 3,
     +   "foo": "baz",
       }
 
@@ -292,7 +289,6 @@ Total number of renders: 3`
 
   Object {
 -   "foo": "bla",
-+   "bar": 1,
 +   "foo": "bar",
   }
 
@@ -354,13 +350,13 @@ Total number of renders: 1`
     });
 
     describe('error messages', () => {
-      const Mock = createReactMock<{ foo: string }>();
+      const Mock = createReactMock<{ foo: string; bar: number }>();
 
       beforeEach(() => {
         Mock.reset();
 
-        $render(<Mock foo="bar" />);
-        $render(<Mock foo="baz" />);
+        $render(<Mock foo="bar" bar={1} />);
+        $render(<Mock foo="baz" bar={1} />);
       });
 
       it('should contain diff for positive expectations', () => {
@@ -372,8 +368,8 @@ Total number of renders: 1`
 + Received
 
   Object {
--   "foo": "baz",
-+   "foo": "no",
+-   "foo": "no",
++   "foo": "baz",
   }
 
 Number of renders: 2`
@@ -386,7 +382,7 @@ Number of renders: 2`
           `expect(mock).not.toHaveProps(props)
 
 Expected: not {"foo": "baz"}
-Received: {"foo": "baz"}
+Received: {"bar": 1, "foo": "baz"}
 
 Number of renders: 2`
         );
