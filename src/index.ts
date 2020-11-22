@@ -1,5 +1,13 @@
 import { ReactMock } from 'react-mock-component';
-import { DeepPartial, diffProps } from './utils';
+import {
+  deepEquals,
+  DeepPartial,
+  diffProps,
+  getMatchingCalls,
+  indent,
+  IndexedRender,
+  printCall,
+} from './utils';
 // eslint-disable-next-line no-use-before-define
 import CustomMatcherResult = jest.CustomMatcherResult;
 // eslint-disable-next-line no-use-before-define
@@ -102,51 +110,6 @@ declare global {
     }
   }
 }
-
-type IndexedRender<Props> = [number, Props];
-
-/**
- * Recursively match props.
- */
-function deepEquals<Props>(
-  received: Props,
-  expected: DeepPartial<Props>
-): boolean {
-  try {
-    // expect in expect, yeah.
-    expect(received).toMatchObject(expected);
-
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
-function getMatchingCalls<Props>(
-  mock: ReactMock<Props>,
-  expected: DeepPartial<Props>
-): IndexedRender<Props>[] {
-  const matchingCalls: IndexedRender<Props>[] = [];
-
-  mock.renderCalls.forEach((received, i) => {
-    if (deepEquals(received, expected)) {
-      matchingCalls.push([i, received]);
-    }
-  });
-
-  return matchingCalls;
-}
-
-const printCall = <Props>(
-  expected: DeepPartial<Props>,
-  printRender: (actual: Props, expected: DeepPartial<Props>) => string
-) => ([i, received]: IndexedRender<Props>) => {
-  return `Render ${i}:${printRender(received, expected)}`;
-};
-
-const indentation = `    `;
-const indent = (s: string) =>
-  `${indentation}${s.split('\n').join(`\n${indentation}`)}`;
 
 const reactMockMatcher: ReactMockMatcher = {
   toBeMounted(this: MatcherContext, mock: ReactMock<any>) {

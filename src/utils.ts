@@ -1,7 +1,14 @@
+import { ReactMock } from 'react-mock-component';
+
 export type DeepPartial<T> = T extends object
   ? { [K in keyof T]?: DeepPartial<T[K]> }
   : T;
 
+export type IndexedRender<Props> = [number, Props];
+
+/**
+ * Recursively diff props, returning only the properties that differ.
+ */
 export function diffProps<Props>(
   actual: Props,
   expected: DeepPartial<Props>
@@ -22,7 +29,49 @@ export function diffProps<Props>(
     // -   "b": 3,
     // +   "b": 2,
     //     }
-
     return e.message.split('\n').slice(5).join('\n');
   }
 }
+
+/**
+ * Recursively match props.
+ */
+export function deepEquals<Props>(
+  received: Props,
+  expected: DeepPartial<Props>
+): boolean {
+  try {
+    // expect in expect, yeah.
+    expect(received).toMatchObject(expected);
+
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+export function getMatchingCalls<Props>(
+  mock: ReactMock<Props>,
+  expected: DeepPartial<Props>
+): IndexedRender<Props>[] {
+  const matchingCalls: IndexedRender<Props>[] = [];
+
+  mock.renderCalls.forEach((received, i) => {
+    if (deepEquals(received, expected)) {
+      matchingCalls.push([i, received]);
+    }
+  });
+
+  return matchingCalls;
+}
+
+export const printCall = <Props>(
+  expected: DeepPartial<Props>,
+  printRender: (actual: Props, expected: DeepPartial<Props>) => string
+) => ([i, received]: IndexedRender<Props>) => {
+  return `Render ${i}:${printRender(received, expected)}`;
+};
+
+const indentation = `    `;
+export const indent = (s: string) =>
+  `${indentation}${s.split('\n').join(`\n${indentation}`)}`;
