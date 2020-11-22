@@ -140,6 +140,17 @@ function getMatchingCalls<Props>(
   return matchingCalls;
 }
 
+const printCall = <Props>(
+  expected: DeepPartial<Props>,
+  printRender: (actual: Props, expected: DeepPartial<Props>) => string
+) => ([i, received]: IndexedRender<Props>) => {
+  return `Render ${i}:${printRender(received, expected)}`;
+};
+
+const indentation = `    `;
+const indent = (s: string) =>
+  `${indentation}${s.split('\n').join(`\n${indentation}`)}`;
+
 const reactMockMatcher: ReactMockMatcher = {
   toBeMounted(this: MatcherContext, mock: ReactMock<any>) {
     const { isNot } = this;
@@ -212,8 +223,6 @@ Received number of renders: ${received}`,
 
     const pass = matchingCalls.length > 0;
 
-    const indentation = '    ';
-
     const intro = `${hint}
 
 Expected: ${isNot ? 'not ' : ''}${printExpected(expected)}
@@ -227,23 +236,23 @@ Total number of renders: ${mock.renderCalls.length}`;
         ? () => `${intro}
 ${EXPECTED_COLOR('- Expected')}
 ${RECEIVED_COLOR('+ Received')}
-${calls
-  .map(
-    ([i, received]) =>
-      // diff should always produce a result as we're showing calls that DIDN'T match.
-      `${indentation}Render ${i}\n${indentation}${diff(expected, received)!
-        .split('\n')
-        .slice(3)
-        .join(`\n${indentation}`)}`
-  )
-  .join('\n')}
+${indent(
+  calls
+    .map(
+      printCall(
+        expected,
+        (b, a) => `\n${diff(a, b)!.split('\n').slice(3).join(`\n`)}`
+      )
+    )
+    .join(`\n`)
+)}
 ${outro}`
         : () => `${intro}
-${matchingCalls
-  .map(
-    ([i, received]) => `${indentation}Render ${i}: ${printReceived(received)}`
-  )
-  .join('\n')}
+${indent(
+  matchingCalls
+    .map(printCall(expected, (a) => ` ${printReceived(a)}`))
+    .join(`\n`)
+)}
 ${outro}`,
       pass,
     };

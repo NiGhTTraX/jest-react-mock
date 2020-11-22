@@ -210,19 +210,19 @@ Expected: {"foo": "bla"}
 Received:
 - Expected
 + Received
-    Render 0
+    Render 0:
       Object {
     -   "foo": "bla",
     +   "bar": 1,
     +   "foo": "bar",
       }
-    Render 1
+    Render 1:
       Object {
     -   "foo": "bla",
     +   "bar": 2,
     +   "foo": "baz",
       }
-    Render 2
+    Render 2:
       Object {
     -   "foo": "bla",
     +   "bar": 3,
