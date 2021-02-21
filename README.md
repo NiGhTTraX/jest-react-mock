@@ -23,10 +23,10 @@ yarn add -D jest-react-mock
 
 ## Setup
 
-```typescript
-import reactMockMatcher from 'jest-react-mock';
+In your test setup:
 
-expect.extend(reactMockMatcher);
+```typescript
+import 'jest-react-mock';
 ```
 
 ## Usage

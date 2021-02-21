@@ -2,7 +2,7 @@ import { $render, $unmount } from '@tdd-buffet/react';
 import React from 'react';
 import createReactMock from 'react-mock-component';
 import stripAnsi from 'strip-ansi';
-import reactMockMatcher from '../src';
+import { reactMockMatcher } from '../src/matcher';
 
 function expectToThrowAnsiless(cb: () => void, message: string) {
   expect(cb).toThrow();
