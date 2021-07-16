@@ -1,6 +1,6 @@
 {
   "name": "jest-react-mock",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "jest helper for react-mock-component",
   "keywords": [
     "jest",
