@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/NiGhTTraX/jest-react-mock/compare/v2.0.0...v3.0.0) (2021-07-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* Node 10 is no longer supported.
+
+### Bug Fixes
+
+* Force TS to emit types ([f439afc](https://github.com/NiGhTTraX/jest-react-mock/commit/f439afcb9abb022bc8c65af35190c40d7c8e827f))
+
+
+### build
+
+* Use node 12 ([6793173](https://github.com/NiGhTTraX/jest-react-mock/commit/67931732fff3bf3a426ea4e1c6fefd3359b95ea4))
+
 ### [2.0.1](https://github.com/NiGhTTraX/jest-react-mock/compare/v2.0.0...v2.0.1) (2021-02-21)
 
 
