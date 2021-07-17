@@ -43,6 +43,7 @@
     "@tdd-buffet/react": "~2.0.0",
     "@tdd-buffet/tsconfig": "~1.0.4",
     "@types/jest": "~26.0.0",
+    "@types/react": "~17.0.14",
     "codecov": "~3.8.0",
     "eslint": "~7.30.0",
     "jest": "~27.0.0",
