@@ -20,14 +20,18 @@ interface ReactMockExpect<Props> {
   toBeMounted(): void;
 
   /**
-   * Check that the mock has been rendered at least once.
+   * Check that the mock has been rendered.
    *
    * If the component was rendered and then unmounted, this expectation will
    * still pass.
    *
+   * @param times The exact number of times you expect the mock component
+   *   to have been rendered. When not passed it checks that the component was
+   *   rendered at least once.
+   *
    * @see toBeMounted
    */
-  toHaveBeenRendered(): void;
+  toHaveBeenRendered(times?: number): void;
 
   /**
    * Check that the mock has been rendered at least once with the expected props.
@@ -132,16 +136,30 @@ Previous number of renders: ${received}`,
     };
   },
 
-  toHaveBeenRendered(this: MatcherContext, mock: ReactMock<any>) {
+  toHaveBeenRendered(
+    this: MatcherContext,
+    mock: ReactMock<any>,
+    times?: number
+  ) {
     const { isNot } = this;
     const { printExpected, printReceived, matcherHint } = this.utils;
 
     const hint = matcherHint('toHaveBeenRendered', `mock`, '', {
       isNot,
     });
-    const expected = isNot ? '0' : `>= ${printExpected(1)}`;
+    // eslint-disable-next-line no-nested-ternary
+    const expected = isNot
+      ? times === undefined
+        ? `${printExpected(0)}`
+        : `!= ${printExpected(times)}`
+      : times === undefined
+      ? `>= ${printExpected(1)}`
+      : ` = ${printExpected(times)}`;
+    // eslint-disable-next-line no-nested-ternary
     const received = isNot
-      ? printReceived(mock.renderCalls.length)
+      ? times === undefined
+        ? printReceived(mock.renderCalls.length)
+        : `   ${printReceived(mock.renderCalls.length)}`
       : `   ${printReceived(mock.renderCalls.length)}`;
 
     return {
@@ -150,7 +168,8 @@ Previous number of renders: ${received}`,
 
 Expected number of renders: ${expected}
 Received number of renders: ${received}`,
-      pass: mock.rendered,
+      pass:
+        times === undefined ? mock.rendered : mock.renderCalls.length === times,
     };
   },
 

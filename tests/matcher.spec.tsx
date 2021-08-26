@@ -89,6 +89,15 @@ Previous number of renders: 1`
       expect(() => expect(Mock).not.toHaveBeenRendered()).toThrow();
     });
 
+    it('should check that a mock was rendered an exact number of times', () => {
+      $render(<Mock />);
+
+      expect(Mock).toHaveBeenRendered(1);
+      expect(() => expect(Mock).not.toHaveBeenRendered()).toThrow();
+      expect(() => expect(Mock).toHaveBeenRendered(2)).toThrow();
+      expect(() => expect(Mock).toHaveBeenRendered(0)).toThrow();
+    });
+
     describe('error messages', () => {
       it('positive', () => {
         expectToThrowAnsiless(
@@ -96,6 +105,14 @@ Previous number of renders: 1`
           `expect(mock).toHaveBeenRendered()
 
 Expected number of renders: >= 1
+Received number of renders:    0`
+        );
+
+        expectToThrowAnsiless(
+          () => expect(Mock).toHaveBeenRendered(2),
+          `expect(mock).toHaveBeenRendered()
+
+Expected number of renders:  = 2
 Received number of renders:    0`
         );
       });
@@ -109,6 +126,14 @@ Received number of renders:    0`
 
 Expected number of renders: 0
 Received number of renders: 1`
+        );
+
+        expectToThrowAnsiless(
+          () => expect(Mock).not.toHaveBeenRendered(1),
+          `expect(mock).not.toHaveBeenRendered()
+
+Expected number of renders: != 1
+Received number of renders:    1`
         );
       });
     });
