@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/NiGhTTraX/jest-react-mock/compare/v3.0.1...v3.1.0) (2021-08-26)
+
+
+### Features
+
+* Add optional times argument to `toHaveBeenRendered` ([d4d4274](https://github.com/NiGhTTraX/jest-react-mock/commit/d4d4274e77d52fc27fbd099b2a51c68475f6173c))
+
 ### [3.0.1](https://github.com/NiGhTTraX/jest-react-mock/compare/v3.0.0...v3.0.1) (2021-07-16)
 
 ## [3.0.0](https://github.com/NiGhTTraX/jest-react-mock/compare/v2.0.0...v3.0.0) (2021-07-16)
