@@ -65,11 +65,13 @@ export function getMatchingCalls<Props>(
   return matchingCalls;
 }
 
-export const printCall = <Props>(
-  expected: DeepPartial<Props>,
-  printRender: (actual: Props, expected: DeepPartial<Props>) => string
-) => ([i, received]: IndexedRender<Props>) =>
-  `Render ${i}:${printRender(received, expected)}`;
+export const printCall =
+  <Props>(
+    expected: DeepPartial<Props>,
+    printRender: (actual: Props, expected: DeepPartial<Props>) => string
+  ) =>
+  ([i, received]: IndexedRender<Props>) =>
+    `Render ${i}:${printRender(received, expected)}`;
 
 const indentation = `    `;
 export const indent = (s: string) =>
