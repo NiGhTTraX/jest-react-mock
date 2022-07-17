@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.1](https://github.com/NiGhTTraX/jest-react-mock/compare/v3.1.0...v3.1.1) (2022-07-17)
+
+
+### Bug Fixes
+
+* Widen peer deps to include jest 28 ([263d1c9](https://github.com/NiGhTTraX/jest-react-mock/commit/263d1c982877780d497050198fd1e5c34c6e5630))
+
 ## [3.1.0](https://github.com/NiGhTTraX/jest-react-mock/compare/v3.0.1...v3.1.0) (2021-08-26)
 
 
