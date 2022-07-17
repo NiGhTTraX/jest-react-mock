@@ -33,8 +33,8 @@
     "report-coverage": "codecov"
   },
   "peerDependencies": {
-    "@types/jest": "^26.0.0 || ^27.0.0",
-    "jest": "^26.0.1 || ^27.0.0",
+    "@types/jest": "^26.0.0 || ^27.0.0 || ^28.0.0",
+    "jest": "^26.0.1 || ^27.0.0 || ^28.0.0",
     "react-mock-component": "^3.0.0"
   },
   "devDependencies": {
