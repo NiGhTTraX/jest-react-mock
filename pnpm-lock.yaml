@@ -3,8 +3,8 @@ lockfileVersion: 5.4
 specifiers:
   '@nighttrax/eslint-config-tsx': ~10.0.0-beta.2
   '@tdd-buffet/jest-config': ~4.1.0
-  '@tdd-buffet/react': ~2.0.2
   '@tdd-buffet/tsconfig': ~1.0.4
+  '@testing-library/react': ~13.3.0
   '@types/jest': ~27.5.0
   '@types/react': ~18.0.15
   codecov: ~3.8.0
@@ -20,8 +20,8 @@ specifiers:
 devDependencies:
   '@nighttrax/eslint-config-tsx': 10.0.0-beta.2_f7qe52xtx5vuteb3dip5gadfiy
   '@tdd-buffet/jest-config': 4.1.1_sc3ftmj3puoex6bziyktvlzr6q
-  '@tdd-buffet/react': 2.0.2_biqbaboplfbrettd7655fr4n2y
   '@tdd-buffet/tsconfig': 1.0.4_typescript@4.3.5
+  '@testing-library/react': 13.3.0_biqbaboplfbrettd7655fr4n2y
   '@types/jest': 27.5.2
   '@types/react': 18.0.15
   codecov: 3.8.3
@@ -829,20 +829,6 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@tdd-buffet/react/2.0.2_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-aUZXqyTuXdxBRYeT/EwFLRcyMMAOKiXONzj4Jrp/TziZ9O8yJQOiRZEAcpBK9l5HTu4orRJwURNxWt9sSjx+/g==}
-    peerDependencies:
-      react: ^17.0.0
-      react-dom: ^17.0.0
-    dependencies:
-      '@testing-library/react': 12.1.5_biqbaboplfbrettd7655fr4n2y
-      '@types/jquery': 3.5.14
-      jquery: 3.6.0
-      pretty-format: 27.3.1
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: true
-
   /@tdd-buffet/tsconfig/1.0.4_typescript@4.3.5:
     resolution: {integrity: sha512-g1w/5wSYvJT4ptcejlL/7URT5GaqRgYc2zi3IOVM4VIADMcRcB4FK9/L84kAeLg/udBzacFj+3tkimghCBE2Eg==}
     peerDependencies:
@@ -865,16 +851,16 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@testing-library/react/12.1.5_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-OfTXCJUFgjd/digLUuPxa0+/3ZxsQmE7ub9kcbW/wi96Bh3o/p5vrETcBGfP17NWPGqeYYl5LTRpwyGoMC4ysg==}
+  /@testing-library/react/13.3.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-DB79aA426+deFgGSjnf5grczDPiL4taK3hFaa+M5q7q20Kcve9eQottOG5kZ74KEr55v0tU2CQormSSDK87zYQ==}
     engines: {node: '>=12'}
     peerDependencies:
-      react: <18.0.0
-      react-dom: <18.0.0
+      react: ^18.0.0
+      react-dom: ^18.0.0
     dependencies:
       '@babel/runtime': 7.18.6
       '@testing-library/dom': 8.16.0
-      '@types/react-dom': 17.0.17
+      '@types/react-dom': 18.0.6
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: true
@@ -952,12 +938,6 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@types/jquery/3.5.14:
-    resolution: {integrity: sha512-X1gtMRMbziVQkErhTQmSe2jFwwENA/Zr+PprCkF63vFq+Yt5PZ4AlKqgmeNlwgn7dhsXEK888eIW2520EpC+xg==}
-    dependencies:
-      '@types/sizzle': 2.3.3
-    dev: true
-
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
@@ -986,18 +966,10 @@ packages:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: true
 
-  /@types/react-dom/17.0.17:
-    resolution: {integrity: sha512-VjnqEmqGnasQKV0CWLevqMTXBYG9GbwuE6x3VetERLh0cq2LTptFE73MrQi2S7GkKXCf2GgwItB/melLnxfnsg==}
+  /@types/react-dom/18.0.6:
+    resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
     dependencies:
-      '@types/react': 17.0.47
-    dev: true
-
-  /@types/react/17.0.47:
-    resolution: {integrity: sha512-mk0BL8zBinf2ozNr3qPnlu1oyVTYq+4V7WA76RgxUAtf0Em/Wbid38KN6n4abEkvO4xMTBWmnP1FtQzgkEiJoA==}
-    dependencies:
-      '@types/prop-types': 15.7.5
-      '@types/scheduler': 0.16.2
-      csstype: 3.1.0
+      '@types/react': 18.0.15
     dev: true
 
   /@types/react/18.0.15:
@@ -1010,10 +982,6 @@ packages:
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
-    dev: true
-
-  /@types/sizzle/2.3.3:
-    resolution: {integrity: sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ==}
     dev: true
 
   /@types/stack-utils/2.0.1:
@@ -3615,10 +3583,6 @@ packages:
       - utf-8-validate
     dev: true
 
-  /jquery/3.6.0:
-    resolution: {integrity: sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==}
-    dev: true
-
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
     dev: true
@@ -4337,16 +4301,6 @@ packages:
     resolution: {integrity: sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
-    dev: true
-
-  /pretty-format/27.3.1:
-    resolution: {integrity: sha512-DR/c+pvFc52nLimLROYjnXPtolawm+uWDxr4FjuLDLUn+ktWnSN851KoHwHzzqq6rfCOjkzN8FLgDrSub6UDuA==}
-    engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
-    dependencies:
-      '@jest/types': 27.5.1
-      ansi-regex: 5.0.1
-      ansi-styles: 5.2.0
-      react-is: 17.0.2
     dev: true
 
   /pretty-format/27.5.1:

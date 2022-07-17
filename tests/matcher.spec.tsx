@@ -1,4 +1,4 @@
-import { $render, $unmount } from '@tdd-buffet/react';
+import { render } from '@testing-library/react';
 import React from 'react';
 import createReactMock from 'react-mock-component';
 import stripAnsi from 'strip-ansi';
@@ -25,12 +25,12 @@ describe('jest-react-mock', () => {
       expect(Mock).not.toBeMounted();
       expect(() => expect(Mock).toBeMounted()).toThrow();
 
-      $render(<Mock />);
+      const { unmount } = render(<Mock />);
 
       expect(Mock).toBeMounted();
       expect(() => expect(Mock).not.toBeMounted()).toThrow();
 
-      $unmount();
+      unmount();
 
       expect(Mock).not.toBeMounted();
       expect(() => expect(Mock).toBeMounted()).toThrow();
@@ -54,7 +54,7 @@ Previous number of renders: 0`
       });
 
       it('negative', () => {
-        $render(<Mock />);
+        render(<Mock />);
 
         expectToThrowAnsiless(
           () => expect(Mock).not.toBeMounted(),
@@ -78,19 +78,19 @@ Previous number of renders: 1`
       expect(Mock).not.toHaveBeenRendered();
       expect(() => expect(Mock).toHaveBeenRendered()).toThrow();
 
-      $render(<Mock />);
+      const { unmount } = render(<Mock />);
 
       expect(Mock).toHaveBeenRendered();
       expect(() => expect(Mock).not.toHaveBeenRendered()).toThrow();
 
-      $unmount();
+      unmount();
 
       expect(Mock).toHaveBeenRendered();
       expect(() => expect(Mock).not.toHaveBeenRendered()).toThrow();
     });
 
     it('should check that a mock was rendered an exact number of times', () => {
-      $render(<Mock />);
+      render(<Mock />);
 
       expect(Mock).toHaveBeenRendered(1);
       expect(() => expect(Mock).not.toHaveBeenRendered()).toThrow();
@@ -118,7 +118,7 @@ Received number of renders:    0`
       });
 
       it('negative', () => {
-        $render(<Mock />);
+        render(<Mock />);
 
         expectToThrowAnsiless(
           () => expect(Mock).not.toHaveBeenRendered(),
@@ -143,8 +143,8 @@ Received number of renders:    1`
     it('should check full props', () => {
       const Mock = createReactMock<{ foo: string }>();
 
-      $render(<Mock foo="bar" />);
-      $render(<Mock foo="baz" />);
+      render(<Mock foo="bar" />);
+      render(<Mock foo="baz" />);
 
       expect(() =>
         expect(Mock).toHaveBeenRenderedWith({ foo: 'no' })
@@ -165,8 +165,8 @@ Received number of renders:    1`
     it('should check partial props', () => {
       const Mock = createReactMock<{ foo: string; bar: number }>();
 
-      $render(<Mock foo="bar" bar={23} />);
-      $render(<Mock foo="baz" bar={42} />);
+      render(<Mock foo="bar" bar={23} />);
+      render(<Mock foo="baz" bar={42} />);
 
       expect(() =>
         expect(Mock).toHaveBeenRenderedWith({ foo: 'no' })
@@ -190,7 +190,7 @@ Received number of renders:    1`
     it('should check partial nested props', () => {
       const Mock = createReactMock<{ foo: { bar: number; baz: boolean } }>();
 
-      $render(<Mock foo={{ bar: 23, baz: true }} />);
+      render(<Mock foo={{ bar: 23, baz: true }} />);
 
       expect(Mock).toHaveBeenRenderedWith({ foo: { bar: 23 } });
       expect(() =>
@@ -206,9 +206,9 @@ Received number of renders:    1`
     it('should support jest matchers', () => {
       const Mock = createReactMock<{ foo: string; bar: number[] }>();
 
-      $render(<Mock foo="bar" bar={[1, 2, 3]} />);
-      $render(<Mock foo="baz" bar={[4, 5, 6]} />);
-      $render(<Mock foo="baz" bar={[7, 8, 9]} />);
+      render(<Mock foo="bar" bar={[1, 2, 3]} />);
+      render(<Mock foo="baz" bar={[4, 5, 6]} />);
+      render(<Mock foo="baz" bar={[7, 8, 9]} />);
 
       expect(Mock).toHaveBeenRenderedWith(
         expect.objectContaining({ bar: expect.arrayContaining([4, 6]) })
@@ -218,7 +218,7 @@ Received number of renders:    1`
     it('should support IDE integration for diff if only one call', () => {
       const Mock = createReactMock<{ foo: string }>();
 
-      $render(<Mock foo="bar" />);
+      render(<Mock foo="bar" />);
 
       const shouldThrow = () =>
         expect(Mock).toHaveBeenRenderedWith({ foo: 'baz' });
@@ -232,7 +232,7 @@ Received number of renders:    1`
         expect(e.matcherResult.expected).toEqual({ foo: 'baz' });
       }
 
-      $render(<Mock foo="bar" />);
+      render(<Mock foo="bar" />);
 
       expect(shouldThrow).toThrow();
 
@@ -252,9 +252,9 @@ Received number of renders:    1`
       });
 
       it('should contain all renders with diffs for positive expectations', () => {
-        $render(<Mock foo="bar" bar={1} />);
-        $render(<Mock foo="baz" bar={2} />);
-        $render(<Mock foo="baz" bar={3} />);
+        render(<Mock foo="bar" bar={1} />);
+        render(<Mock foo="baz" bar={2} />);
+        render(<Mock foo="baz" bar={3} />);
 
         expectToThrowAnsiless(
           () => expect(Mock).toHaveBeenRenderedWith({ foo: 'bla' }),
@@ -285,9 +285,9 @@ Total number of renders: 3`
       });
 
       it('should contain all matching renders for negative expectations', () => {
-        $render(<Mock foo="bar" bar={1} />);
-        $render(<Mock foo="baz" bar={2} />);
-        $render(<Mock foo="baz" bar={3} />);
+        render(<Mock foo="bar" bar={1} />);
+        render(<Mock foo="baz" bar={2} />);
+        render(<Mock foo="baz" bar={3} />);
 
         expectToThrowAnsiless(
           () => expect(Mock).not.toHaveBeenRenderedWith({ foo: 'baz' }),
@@ -303,7 +303,7 @@ Total number of renders: 3`
       });
 
       it('should diff the only call', () => {
-        $render(<Mock foo="bar" bar={1} />);
+        render(<Mock foo="bar" bar={1} />);
 
         expectToThrowAnsiless(
           () => expect(Mock).toHaveBeenRenderedWith({ foo: 'bla' }),
@@ -327,8 +327,8 @@ Total number of renders: 1`
     it('should check the last props', () => {
       const Mock = createReactMock<{ foo: string }>();
 
-      $render(<Mock foo="bar" />);
-      $render(<Mock foo="baz" />);
+      render(<Mock foo="bar" />);
+      render(<Mock foo="baz" />);
 
       expect(Mock).not.toHaveProps({ foo: 'bar' });
       expect(() => expect(Mock).not.toHaveProps({ foo: 'baz' })).toThrow();
@@ -339,7 +339,7 @@ Total number of renders: 1`
     it('should support IDE integration for diff', () => {
       const Mock = createReactMock<{ foo: string }>();
 
-      $render(<Mock foo="bar" />);
+      render(<Mock foo="bar" />);
 
       const shouldThrow = () => expect(Mock).toHaveProps({ foo: 'baz' });
 
@@ -356,7 +356,7 @@ Total number of renders: 1`
     it('should support partial nesting', () => {
       const Mock = createReactMock<{ foo: { bar: number; baz: boolean } }>();
 
-      $render(<Mock foo={{ bar: 23, baz: false }} />);
+      render(<Mock foo={{ bar: 23, baz: false }} />);
 
       expect(Mock).toHaveProps({ foo: { bar: 23 } });
       expect(() => expect(Mock).toHaveProps({ foo: { bar: 24 } })).toThrow();
@@ -367,7 +367,7 @@ Total number of renders: 1`
     it('should support jest matchers', () => {
       const Mock = createReactMock<{ foo: string; bar: number[] }>();
 
-      $render(<Mock foo="bar" bar={[1, 2, 3]} />);
+      render(<Mock foo="bar" bar={[1, 2, 3]} />);
 
       expect(Mock).toHaveProps(
         expect.objectContaining({ bar: expect.arrayContaining([2, 3]) })
@@ -380,8 +380,8 @@ Total number of renders: 1`
       beforeEach(() => {
         Mock.reset();
 
-        $render(<Mock foo="bar" bar={1} />);
-        $render(<Mock foo="baz" bar={1} />);
+        render(<Mock foo="bar" bar={1} />);
+        render(<Mock foo="baz" bar={1} />);
       });
 
       it('should contain diff for positive expectations', () => {
