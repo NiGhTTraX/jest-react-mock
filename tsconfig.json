@@ -3,6 +3,9 @@
 
   "compilerOptions": {
     "jsx": "react",
-    "types": ["jest"]
+    "types": ["jest"],
+    // TODO: we catch JestAssertionError but the type is not available for import
+    // see https://github.com/facebook/jest/issues/9919
+    "useUnknownInCatchVariables": false
   }
 }
