@@ -12,7 +12,7 @@ specifiers:
   jest: ~28.1.0
   react: ~18.2.0
   react-dom: ~18.2.0
-  react-mock-component: ~3.0.2
+  react-mock-component: ~3.1.0
   standard-version: ~9.5.0
   strip-ansi: ~6.0.0
   typescript: ~4.7.4
@@ -29,7 +29,7 @@ devDependencies:
   jest: 28.1.3
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-mock-component: 3.0.2_bb2bxwco6ptpubzwpazr52qf6i
+  react-mock-component: 3.1.0_bb2bxwco6ptpubzwpazr52qf6i
   standard-version: 9.5.0
   strip-ansi: 6.0.1
   typescript: 4.7.4
@@ -4363,8 +4363,8 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
 
-  /react-mock-component/3.0.2_bb2bxwco6ptpubzwpazr52qf6i:
-    resolution: {integrity: sha512-korloEavqB9jVRYxLGIugdvILdG4hGM305cNzkaZEW5eqUWuO5fEJC1znAlM4MwAxpVeUvhioZTfN6Xfe323Ug==}
+  /react-mock-component/3.1.0_bb2bxwco6ptpubzwpazr52qf6i:
+    resolution: {integrity: sha512-PK+IPsEy1Zc4FTWZmUo3OzuFlOSuf6HSru0nYMZdVvlcfv+4kKKO1Kea+qaiZbo01y7QQbqD6hf3As6vfGLZXw==}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
