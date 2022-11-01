@@ -14,7 +14,10 @@ export function diffProps<Props>(
   expected: DeepPartial<Props>
 ): string {
   try {
-    expect(actual).toMatchObject(expected);
+    expect(actual).toMatchObject(
+      // @ts-expect-error because the jest type is constrained to {}
+      expected
+    );
 
     return '';
   } catch (e) {
@@ -42,7 +45,10 @@ export function deepEquals<Props>(
 ): boolean {
   try {
     // expect in expect, yeah.
-    expect(received).toMatchObject(expected);
+    expect(received).toMatchObject(
+      // @ts-expect-error because the jest type is constrained to {}
+      expected
+    );
 
     return true;
   } catch (e) {
