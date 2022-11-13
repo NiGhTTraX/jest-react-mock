@@ -9,15 +9,12 @@ export type IndexedRender<Props> = [number, Props];
 /**
  * Recursively diff props, returning only the properties that differ.
  */
-export function diffProps<Props>(
+export function diffProps<Props extends {}>(
   actual: Props,
   expected: DeepPartial<Props>
 ): string {
   try {
-    expect(actual).toMatchObject(
-      // @ts-expect-error because the jest type is constrained to {}
-      expected
-    );
+    expect(actual).toMatchObject(expected);
 
     return '';
   } catch (e) {
@@ -39,16 +36,13 @@ export function diffProps<Props>(
 /**
  * Recursively match props.
  */
-export function deepEquals<Props>(
+export function deepEquals<Props extends {}>(
   received: Props,
   expected: DeepPartial<Props>
 ): boolean {
   try {
     // expect in expect, yeah.
-    expect(received).toMatchObject(
-      // @ts-expect-error because the jest type is constrained to {}
-      expected
-    );
+    expect(received).toMatchObject(expected);
 
     return true;
   } catch (e) {
@@ -56,7 +50,7 @@ export function deepEquals<Props>(
   }
 }
 
-export function getMatchingCalls<Props>(
+export function getMatchingCalls<Props extends {}>(
   mock: ReactMock<Props>,
   expected: DeepPartial<Props>
 ): IndexedRender<Props>[] {

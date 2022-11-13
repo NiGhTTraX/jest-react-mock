@@ -90,12 +90,12 @@ type Result = CustomMatcherResult & { actual?: any; expected?: any };
 type ReactMockMatcher = {
   toBeMounted: (this: MatcherContext, mock: ReactMock<any>) => Result;
   toHaveBeenRendered: (this: MatcherContext, mock: ReactMock<any>) => Result;
-  toHaveBeenRenderedWith: <Props>(
+  toHaveBeenRenderedWith: <Props extends {}>(
     this: MatcherContext,
     mock: ReactMock<Props>,
     expected: DeepPartial<Props>
   ) => Result;
-  toHaveProps: <Props>(
+  toHaveProps: <Props extends {}>(
     this: MatcherContext,
     mock: ReactMock<Props>,
     expected: DeepPartial<Props>
@@ -173,7 +173,7 @@ Received number of renders: ${received}`,
     };
   },
 
-  toHaveBeenRenderedWith<Props>(
+  toHaveBeenRenderedWith<Props extends {}>(
     this: MatcherContext,
     mock: ReactMock<Props>,
     expected: DeepPartial<Props>
@@ -252,7 +252,7 @@ ${outro}`,
     };
   },
 
-  toHaveProps<Props>(
+  toHaveProps<Props extends {}>(
     this: MatcherContext,
     mock: ReactMock<Props>,
     expected: DeepPartial<Props>
