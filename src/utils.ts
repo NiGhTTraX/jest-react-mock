@@ -74,5 +74,6 @@ export const printCall =
     `Render ${i}:${printRender(received, expected)}`;
 
 const indentation = `    `;
+
 export const indent = (s: string) =>
   `${indentation}${s.split('\n').join(`\n${indentation}`)}`;
