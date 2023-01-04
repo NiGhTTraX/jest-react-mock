@@ -14,7 +14,7 @@ specifiers:
   react-dom: ~18.2.0
   react-mock-component: ~3.1.0
   standard-version: ~9.5.0
-  strip-ansi: ~6.0.0
+  strip-ansi: ~7.0.0
   typescript: ~4.9.0
 
 devDependencies:
@@ -31,7 +31,7 @@ devDependencies:
   react-dom: 18.2.0_react@18.2.0
   react-mock-component: 3.1.0_bb2bxwco6ptpubzwpazr52qf6i
   standard-version: 9.5.0
-  strip-ansi: 6.0.1
+  strip-ansi: 7.0.1
   typescript: 4.9.3
 
 packages:
@@ -1268,6 +1268,11 @@ packages:
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
+    dev: true
+
+  /ansi-regex/6.0.1:
+    resolution: {integrity: sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==}
+    engines: {node: '>=12'}
     dev: true
 
   /ansi-styles/3.2.1:
@@ -5035,6 +5040,13 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       ansi-regex: 5.0.1
+    dev: true
+
+  /strip-ansi/7.0.1:
+    resolution: {integrity: sha512-cXNxvT8dFNRVfhVME3JAe98mkXDYN2O1l7jmcwMnOslDeESg1rF/OZMtK0nRAhiari1unG5cD4jG3rapUAkLbw==}
+    engines: {node: '>=12'}
+    dependencies:
+      ansi-regex: 6.0.1
     dev: true
 
   /strip-bom/3.0.0:
