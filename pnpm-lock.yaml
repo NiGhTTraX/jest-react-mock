@@ -18,14 +18,14 @@ importers:
         specifier: ~1.0.4
         version: 1.0.4(typescript@4.9.3)
       '@testing-library/react':
-        specifier: ~16.0.0
-        version: 16.0.0(@testing-library/dom@10.1.0)(@types/react-dom@18.0.6)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ~16.1.0
+        version: 16.1.0(@testing-library/dom@10.1.0)(@types/react-dom@18.0.6)(@types/react@18.3.17)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/jest':
         specifier: ~29.5.0
         version: 29.5.0
       '@types/react':
-        specifier: ~18.3.0
-        version: 18.3.2
+        specifier: ~18.3.12
+        version: 18.3.17
       codecov:
         specifier: ~3.8.0
         version: 3.8.3
@@ -36,14 +36,14 @@ importers:
         specifier: ~29.7.0
         version: 29.7.0(@types/node@18.0.5)
       react:
-        specifier: ~18.3.0
-        version: 18.3.1
+        specifier: ~19.0.0
+        version: 19.0.0
       react-dom:
-        specifier: ~18.3.0
-        version: 18.3.1(react@18.3.1)
+        specifier: ~19.0.0
+        version: 19.0.0(react@19.0.0)
       react-mock-component:
-        specifier: ~3.1.0
-        version: 3.1.0(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ~4.1.1
+        version: 4.1.1(@types/react@18.3.17)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       standard-version:
         specifier: ~9.5.0
         version: 9.5.0
@@ -474,23 +474,26 @@ packages:
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
 
-  '@sinonjs/commons@1.8.3':
-    resolution: {integrity: sha512-xkNcLAn/wZaX14RPlwizcKicDk9G3F8m2nU3L7Ukm5zBgTwiT0wsoFAHx9Jq56fJA1z/7uKGtCRu16sOUCLIHQ==}
-
   '@sinonjs/commons@2.0.0':
     resolution: {integrity: sha512-uLa0j859mMrg2slwQYdO/AkrOfmH+X6LTVmNTS9CqexuE2IvVORIkSpJLqePAbEnKJ77aMmCwr1NUZ57120Xcg==}
+
+  '@sinonjs/commons@3.0.1':
+    resolution: {integrity: sha512-K3mCHKQ9sVh8o1C9cxkwxaOmXoAMlDxC1mYyHrjqOWEcBjYr76t96zL2zlj5dUGZ3HSw240X1qgH3Mjf1yJWpQ==}
 
   '@sinonjs/fake-timers@10.0.2':
     resolution: {integrity: sha512-SwUDyjWnah1AaNl7kxsa7cfLhlTYoiyhDAIgyh+El30YvXs/o7OLXpYH88Zdhyx9JExKrmHDJ+10bwIcY80Jmw==}
 
-  '@sinonjs/fake-timers@9.1.2':
-    resolution: {integrity: sha512-BPS4ynJW/o92PUR4wgriz2Ud5gpST5vz6GQfMixEDK0Z8ZCUv2M7SkBLykH56T++Xs+8ln9zTGbOvNGIe02/jw==}
+  '@sinonjs/fake-timers@10.3.0':
+    resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
 
-  '@sinonjs/samsam@6.1.1':
-    resolution: {integrity: sha512-cZ7rKJTLiE7u7Wi/v9Hc2fs3Ucc3jrWeMgPHbbTCeVAB2S0wOBbYlkJVeNSL04i7fdhT8wIbDq1zhC/PXTD2SA==}
+  '@sinonjs/fake-timers@11.3.1':
+    resolution: {integrity: sha512-EVJO7nW5M/F5Tur0Rf2z/QoMo+1Ia963RiMtapiQrEWvY0iBUvADo8Beegwjpnle5BHkyHuoxSTW3jF43H1XRA==}
 
-  '@sinonjs/text-encoding@0.7.1':
-    resolution: {integrity: sha512-+iTbntw2IZPb/anVDbypzfQa+ay64MW0Zo8aJ8gZPWMMK6/OubMVb6lUPMagqjOPnmtauXnFCACVl3O7ogjeqQ==}
+  '@sinonjs/samsam@8.0.2':
+    resolution: {integrity: sha512-v46t/fwnhejRSFTGqbpn9u+LQ9xJDse10gNnPgAcxgdoCDMXj/G2asWAC/8Qs+BAZDicX+MNZouXT1A7c83kVw==}
+
+  '@sinonjs/text-encoding@0.7.3':
+    resolution: {integrity: sha512-DE427ROAphMQzU4ENbliGYrBSYPXF+TtLg9S8vzeA+OF4ZKzoDdzfL8sxuMUGS/lgRhM6j1URSk9ghf7Xo1tyA==}
 
   '@tdd-buffet/jest-config@5.0.1':
     resolution: {integrity: sha512-nHmwidOoJRPmkY0QLEapDAjySauYC2C1cEDET8wVUlLAgl29tals+ZLzMPdVT5UPznXYDifShHsk2/+tNByOhQ==}
@@ -506,15 +509,15 @@ packages:
     resolution: {integrity: sha512-wdsYKy5zupPyLCW2Je5DLHSxSfbIp6h80WoHOQc+RPtmPGA52O9x5MJEkv92Sjonpq+poOAtUKhh1kBGAXBrNA==}
     engines: {node: '>=18'}
 
-  '@testing-library/react@16.0.0':
-    resolution: {integrity: sha512-guuxUKRWQ+FgNX0h0NS0FIq3Q3uLtWVpBzcLOggmfMoUpgBnzBzvLLd4fbm6yS8ydJd94cIfY4yP9qUQjM2KwQ==}
+  '@testing-library/react@16.1.0':
+    resolution: {integrity: sha512-Q2ToPvg0KsVL0ohND9A3zLJWcOXXcO8IDu3fj11KhNt0UlCWyFyvnCIBkd12tidB2lkiVRG8VFqdhcqhqnAQtg==}
     engines: {node: '>=18'}
     peerDependencies:
       '@testing-library/dom': ^10.0.0
-      '@types/react': ^18.0.0
-      '@types/react-dom': ^18.0.0
-      react: ^18.0.0
-      react-dom: ^18.0.0
+      '@types/react': ^18.0.0 || ^19.0.0
+      '@types/react-dom': ^18.0.0 || ^19.0.0
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -583,14 +586,14 @@ packages:
   '@types/prettier@2.6.3':
     resolution: {integrity: sha512-ymZk3LEC/fsut+/Q5qejp6R9O1rMxz3XaRHDV6kX8MrGAhOSPqVARbDi+EZvInBpw+BnCX3TD240byVkOfQsHg==}
 
-  '@types/prop-types@15.7.5':
-    resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+  '@types/prop-types@15.7.14':
+    resolution: {integrity: sha512-gNMvNH49DJ7OJYv+KAKn0Xp45p8PLl6zo2YnvDIbTd4J6MER2BmWN49TG7n9LvkyihINxeKW8+3bfS2yDC9dzQ==}
 
   '@types/react-dom@18.0.6':
     resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
 
-  '@types/react@18.3.2':
-    resolution: {integrity: sha512-Btgg89dAnqD4vV7R3hlwOxgqobUQKgx3MmrQRi0yYbs/P0ym8XozIAlkqVilPqHQwXs4e9Tf63rrCgl58BcO4w==}
+  '@types/react@18.3.17':
+    resolution: {integrity: sha512-opAQ5no6LqJNo9TqnxBKsgnkIYHozW9KSTlFVoSUJYh1Fl/sswkEoqIugRSm7tbh6pABtYjGAjW+GOS23j8qbw==}
 
   '@types/semver@7.3.13':
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
@@ -1118,8 +1121,8 @@ packages:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  diff@5.1.0:
-    resolution: {integrity: sha512-D+mk+qE8VC/PAUrlAU34N+VfXev0ghe5ywmpqrawphmVZc1bEfn56uo9qpyGp1p4xpzOHkSW4ztBd6L7Xx4ACw==}
+  diff@5.2.0:
+    resolution: {integrity: sha512-uIFDxqpRZGZ6ThOk84hEfqWoHx2devRFvpTZcTHur85vImfaxUbTW9Ryh4CpCuDnToOP1CEtXKIgytHBPVff5A==}
     engines: {node: '>=0.3.1'}
 
   dir-glob@3.0.1:
@@ -1752,9 +1755,6 @@ packages:
     resolution: {integrity: sha512-fKzAra0rGJUUBwGBgNkHZuToZcn+TtXHpeCgmkMJMMYx1sQDYaCSyjJBSCa2nH1DGm7s3n1oBnohoVTBaN7Lww==}
     engines: {node: '>=8'}
 
-  isarray@0.0.1:
-    resolution: {integrity: sha512-D2S+3GLxWH+uhrNEcoh/fnmYeP8E8/zHl644d/jdA0g2uyXvy3sb0qxotE+ne0LtccHknQzWwZEzhak7oJ0COQ==}
-
   isarray@1.0.0:
     resolution: {integrity: sha512-VLghIWNM6ELQzo7zwmcg0NmTVyWKYjvIeM83yjp0wRDTmUnrM678fQbcKBo6n2CJEF0szoG//ytg+TKla89ALQ==}
 
@@ -2051,8 +2051,8 @@ packages:
     resolution: {integrity: sha512-4ZCADZHRkno244xlNnn4AOG6sRQ7iBZ5BbgZ4vW4y5IZw7cVUD1PPeblm1xx/nfmMxPdt/LHsXZW8z/j58+l9Q==}
     engines: {node: '>=4.0'}
 
-  just-extend@4.2.1:
-    resolution: {integrity: sha512-g3UB796vUFIY90VIv/WX3L2c8CS2MdWUww3CNrYmqza1Fg0DURc2K/O4YrnklBdQarSJ/y8JnJYDGc+1iumQjg==}
+  just-extend@6.2.0:
+    resolution: {integrity: sha512-cYofQu2Xpom82S6qD778jBDpwvvy39s1l/hrYij2u9AMdQcGRpaBu6kY4mVhuno5kJVi1DAz4aiphA2WI1/OAw==}
 
   kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
@@ -2105,6 +2105,7 @@ packages:
 
   lodash.get@4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    deprecated: This package is deprecated. Use the optional chaining (?.) operator instead.
 
   lodash.ismatch@4.4.0:
     resolution: {integrity: sha512-fPMfXjGQEV9Xsq/8MTSgUf255gawYRbjwMyDbcvDhXgV7enSZA0hynz6vMPnpAb5iONEzBHBPsT+0zes5Z301g==}
@@ -2211,8 +2212,8 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  nise@5.1.1:
-    resolution: {integrity: sha512-yr5kW2THW1AkxVmCnKEh4nbYkJdB3I7LUkiUgOvEkOp414mc2UMaHMA7pjq1nYowhdoJZGwEKGaQVbxfpWj10A==}
+  nise@5.1.9:
+    resolution: {integrity: sha512-qOnoujW4SV6e40dYxJOb3uvuoPHtmLzIk4TFo+j0jPJoC+5Z9xja5qH5JZobEPsa8+YYphMrOSwnrshEhG2qww==}
 
   node-fetch@2.6.7:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
@@ -2366,8 +2367,8 @@ packages:
   path-parse@1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
 
-  path-to-regexp@1.8.0:
-    resolution: {integrity: sha512-n43JRhlUKUAlibEJhPeir1ncUID16QnEjNpwzNdO3Lm4ywrBpBZ5oLD0I6br9evr1Y9JTqwRtAh7JLoOzAQdVA==}
+  path-to-regexp@6.3.0:
+    resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
 
   path-type@3.0.0:
     resolution: {integrity: sha512-T2ZUsdZFHgA3u4e5PfPbjd7HDDpxPnQb5jN0SrDsjNSuVXHJqtwTnWqG0B1jZrgmJ/7lj1EmVIByWt1gxGkWvg==}
@@ -2470,10 +2471,10 @@ packages:
     resolution: {integrity: sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==}
     engines: {node: '>=8'}
 
-  react-dom@18.3.1:
-    resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
+  react-dom@19.0.0:
+    resolution: {integrity: sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==}
     peerDependencies:
-      react: ^18.3.1
+      react: ^19.0.0
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -2484,15 +2485,15 @@ packages:
   react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
 
-  react-mock-component@3.1.0:
-    resolution: {integrity: sha512-PK+IPsEy1Zc4FTWZmUo3OzuFlOSuf6HSru0nYMZdVvlcfv+4kKKO1Kea+qaiZbo01y7QQbqD6hf3As6vfGLZXw==}
+  react-mock-component@4.1.1:
+    resolution: {integrity: sha512-pAGDJt6HTwjkKxzv+4J6KHd9LDL5IUvii4Uj8MqgsD4rYgsU62B1GOEINV+LxelnSey4un6ObzcWbcW0didMgw==}
     peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      '@types/react': ^18.0.0 || ^19.0.0
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
 
-  react@18.3.1:
-    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
+  react@19.0.0:
+    resolution: {integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==}
     engines: {node: '>=0.10.0'}
 
   read-pkg-up@3.0.0:
@@ -2589,8 +2590,8 @@ packages:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
 
-  scheduler@0.23.2:
-    resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
+  scheduler@0.25.0:
+    resolution: {integrity: sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA==}
 
   semver@5.7.1:
     resolution: {integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==}
@@ -2629,8 +2630,8 @@ packages:
   signal-exit@3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
 
-  sinon@14.0.0:
-    resolution: {integrity: sha512-ugA6BFmE+WrJdh0owRZHToLd32Uw3Lxq6E6LtNRU+xTVBefx632h03Q7apXWRsRdZAJ41LB8aUfn2+O4jsDNMw==}
+  sinon@15.1.2:
+    resolution: {integrity: sha512-uG1pU54Fis4EfYOPoEi13fmRHgZNg/u+3aReSEzHsN52Bpf+bMVfsBQS5MjouI+rTuG6UBIINlpuuO2Epr7SiA==}
     deprecated: 16.1.1
 
   sisteransi@1.0.5:
@@ -2864,6 +2865,10 @@ packages:
 
   type-detect@4.0.8:
     resolution: {integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==}
+    engines: {node: '>=4'}
+
+  type-detect@4.1.0:
+    resolution: {integrity: sha512-Acylog8/luQ8L7il+geoSxhEkazvkslg7PSNKOX59mbB9cOveP5aq9h74Y7YU8yDpJwetzQQrfIwtf4Wp4LKcw==}
     engines: {node: '>=4'}
 
   type-fest@0.18.1:
@@ -3420,7 +3425,7 @@ snapshots:
   '@jest/fake-timers@29.7.0':
     dependencies:
       '@jest/types': 29.6.3
-      '@sinonjs/fake-timers': 10.0.2
+      '@sinonjs/fake-timers': 10.3.0
       '@types/node': 18.0.5
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
@@ -3627,19 +3632,19 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
 
-  '@nighttrax/eslint-config-base@10.0.0(eslint-plugin-import@2.26.0(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0))(eslint-plugin-prettier@4.2.1(eslint@8.57.0)(prettier@2.7.1))(eslint@8.57.0)(prettier@2.7.1)':
+  '@nighttrax/eslint-config-base@10.0.0(eslint-plugin-import@2.26.0)(eslint-plugin-prettier@4.2.1(eslint@8.57.0)(prettier@2.7.1))(eslint@8.57.0)(prettier@2.7.1)':
     dependencies:
       eslint: 8.57.0
-      eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.26.0(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0))(eslint@8.57.0)
+      eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.26.0)(eslint@8.57.0)
       eslint-config-prettier: 8.5.0(eslint@8.57.0)
       eslint-plugin-import: 2.26.0(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0)
       eslint-plugin-prettier: 4.2.1(eslint@8.57.0)(prettier@2.7.1)
       prettier: 2.7.1
 
-  '@nighttrax/eslint-config-react@9.0.0(eslint-plugin-import@2.26.0(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0))(eslint-plugin-jsx-a11y@6.6.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react@7.31.10(eslint@8.57.0))(eslint@8.57.0)':
+  '@nighttrax/eslint-config-react@9.0.0(eslint-plugin-import@2.26.0)(eslint-plugin-jsx-a11y@6.6.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react@7.31.10(eslint@8.57.0))(eslint@8.57.0)':
     dependencies:
       eslint: 8.57.0
-      eslint-config-airbnb: 19.0.4(eslint-plugin-import@2.26.0(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0))(eslint-plugin-jsx-a11y@6.6.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react@7.31.10(eslint@8.57.0))(eslint@8.57.0)
+      eslint-config-airbnb: 19.0.4(eslint-plugin-import@2.26.0)(eslint-plugin-jsx-a11y@6.6.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react@7.31.10(eslint@8.57.0))(eslint@8.57.0)
       eslint-plugin-import: 2.26.0(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.6.1(eslint@8.57.0)
       eslint-plugin-react: 7.31.10(eslint@8.57.0)
@@ -3647,8 +3652,8 @@ snapshots:
 
   '@nighttrax/eslint-config-tsx@11.0.0(eslint@8.57.0)(typescript@4.9.3)':
     dependencies:
-      '@nighttrax/eslint-config-base': 10.0.0(eslint-plugin-import@2.26.0(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0))(eslint-plugin-prettier@4.2.1(eslint@8.57.0)(prettier@2.7.1))(eslint@8.57.0)(prettier@2.7.1)
-      '@nighttrax/eslint-config-react': 9.0.0(eslint-plugin-import@2.26.0(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0))(eslint-plugin-jsx-a11y@6.6.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react@7.31.10(eslint@8.57.0))(eslint@8.57.0)
+      '@nighttrax/eslint-config-base': 10.0.0(eslint-plugin-import@2.26.0)(eslint-plugin-prettier@4.2.1(eslint@8.57.0)(prettier@2.7.1))(eslint@8.57.0)(prettier@2.7.1)
+      '@nighttrax/eslint-config-react': 9.0.0(eslint-plugin-import@2.26.0)(eslint-plugin-jsx-a11y@6.6.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react@7.31.10(eslint@8.57.0))(eslint@8.57.0)
       '@rushstack/eslint-patch': 1.2.0
       '@typescript-eslint/eslint-plugin': 5.42.1(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint@8.57.0)(typescript@4.9.3)
       '@typescript-eslint/parser': 5.42.1(eslint@8.57.0)(typescript@4.9.3)
@@ -3693,11 +3698,11 @@ snapshots:
 
   '@sinclair/typebox@0.27.8': {}
 
-  '@sinonjs/commons@1.8.3':
+  '@sinonjs/commons@2.0.0':
     dependencies:
       type-detect: 4.0.8
 
-  '@sinonjs/commons@2.0.0':
+  '@sinonjs/commons@3.0.1':
     dependencies:
       type-detect: 4.0.8
 
@@ -3705,17 +3710,21 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 2.0.0
 
-  '@sinonjs/fake-timers@9.1.2':
+  '@sinonjs/fake-timers@10.3.0':
     dependencies:
-      '@sinonjs/commons': 1.8.3
+      '@sinonjs/commons': 3.0.1
 
-  '@sinonjs/samsam@6.1.1':
+  '@sinonjs/fake-timers@11.3.1':
     dependencies:
-      '@sinonjs/commons': 1.8.3
+      '@sinonjs/commons': 3.0.1
+
+  '@sinonjs/samsam@8.0.2':
+    dependencies:
+      '@sinonjs/commons': 3.0.1
       lodash.get: 4.4.2
-      type-detect: 4.0.8
+      type-detect: 4.1.0
 
-  '@sinonjs/text-encoding@0.7.1': {}
+  '@sinonjs/text-encoding@0.7.3': {}
 
   '@tdd-buffet/jest-config@5.0.1(@babel/core@7.18.6)(babel-jest@29.7.0(@babel/core@7.18.6))(jest@29.7.0(@types/node@18.0.5))':
     dependencies:
@@ -3753,14 +3762,14 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/react@16.0.0(@testing-library/dom@10.1.0)(@types/react-dom@18.0.6)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@testing-library/react@16.1.0(@testing-library/dom@10.1.0)(@types/react-dom@18.0.6)(@types/react@18.3.17)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.20.1
       '@testing-library/dom': 10.1.0
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
     optionalDependencies:
-      '@types/react': 18.3.2
+      '@types/react': 18.3.17
       '@types/react-dom': 18.0.6
 
   '@tootallnate/once@1.1.2': {}
@@ -3831,16 +3840,16 @@ snapshots:
 
   '@types/prettier@2.6.3': {}
 
-  '@types/prop-types@15.7.5': {}
+  '@types/prop-types@15.7.14': {}
 
   '@types/react-dom@18.0.6':
     dependencies:
-      '@types/react': 18.3.2
+      '@types/react': 18.3.17
     optional: true
 
-  '@types/react@18.3.2':
+  '@types/react@18.3.17':
     dependencies:
-      '@types/prop-types': 15.7.5
+      '@types/prop-types': 15.7.14
       csstype: 3.1.0
 
   '@types/semver@7.3.13': {}
@@ -4429,7 +4438,7 @@ snapshots:
 
   diff-sequences@29.6.3: {}
 
-  diff@5.1.0: {}
+  diff@5.2.0: {}
 
   dir-glob@3.0.1:
     dependencies:
@@ -4530,7 +4539,7 @@ snapshots:
     optionalDependencies:
       source-map: 0.6.1
 
-  eslint-config-airbnb-base@15.0.0(eslint-plugin-import@2.26.0(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0))(eslint@8.57.0):
+  eslint-config-airbnb-base@15.0.0(eslint-plugin-import@2.26.0)(eslint@8.57.0):
     dependencies:
       confusing-browser-globals: 1.0.11
       eslint: 8.57.0
@@ -4539,10 +4548,10 @@ snapshots:
       object.entries: 1.1.5
       semver: 6.3.0
 
-  eslint-config-airbnb@19.0.4(eslint-plugin-import@2.26.0(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0))(eslint-plugin-jsx-a11y@6.6.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react@7.31.10(eslint@8.57.0))(eslint@8.57.0):
+  eslint-config-airbnb@19.0.4(eslint-plugin-import@2.26.0)(eslint-plugin-jsx-a11y@6.6.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react@7.31.10(eslint@8.57.0))(eslint@8.57.0):
     dependencies:
       eslint: 8.57.0
-      eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.26.0(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0))(eslint@8.57.0)
+      eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.26.0)(eslint@8.57.0)
       eslint-plugin-import: 2.26.0(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.6.1(eslint@8.57.0)
       eslint-plugin-react: 7.31.10(eslint@8.57.0)
@@ -4575,7 +4584,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.7.3(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-node@0.3.6)(eslint-import-resolver-typescript@3.5.2(eslint-plugin-import@2.26.0)(eslint@8.57.0)):
+  eslint-module-utils@2.7.3(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-node@0.3.6)(eslint-import-resolver-typescript@3.5.2):
     dependencies:
       debug: 3.2.7
       find-up: 2.1.0
@@ -4594,7 +4603,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.6
-      eslint-module-utils: 2.7.3(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-node@0.3.6)(eslint-import-resolver-typescript@3.5.2(eslint-plugin-import@2.26.0)(eslint@8.57.0))
+      eslint-module-utils: 2.7.3(@typescript-eslint/parser@5.42.1(eslint@8.57.0)(typescript@4.9.3))(eslint-import-resolver-node@0.3.6)(eslint-import-resolver-typescript@3.5.2)
       has: 1.0.3
       is-core-module: 2.11.0
       is-glob: 4.0.3
@@ -5154,8 +5163,6 @@ snapshots:
   is-wsl@2.2.0:
     dependencies:
       is-docker: 2.2.1
-
-  isarray@0.0.1: {}
 
   isarray@1.0.0: {}
 
@@ -5781,7 +5788,7 @@ snapshots:
       array-includes: 3.1.5
       object.assign: 4.1.2
 
-  just-extend@4.2.1: {}
+  just-extend@6.2.0: {}
 
   kind-of@6.0.3: {}
 
@@ -5925,13 +5932,13 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  nise@5.1.1:
+  nise@5.1.9:
     dependencies:
-      '@sinonjs/commons': 1.8.3
-      '@sinonjs/fake-timers': 10.0.2
-      '@sinonjs/text-encoding': 0.7.1
-      just-extend: 4.2.1
-      path-to-regexp: 1.8.0
+      '@sinonjs/commons': 3.0.1
+      '@sinonjs/fake-timers': 11.3.1
+      '@sinonjs/text-encoding': 0.7.3
+      just-extend: 6.2.0
+      path-to-regexp: 6.3.0
 
   node-fetch@2.6.7:
     dependencies:
@@ -6093,9 +6100,7 @@ snapshots:
 
   path-parse@1.0.7: {}
 
-  path-to-regexp@1.8.0:
-    dependencies:
-      isarray: 0.0.1
+  path-to-regexp@6.3.0: {}
 
   path-type@3.0.0:
     dependencies:
@@ -6174,11 +6179,10 @@ snapshots:
 
   quick-lru@4.0.1: {}
 
-  react-dom@18.3.1(react@18.3.1):
+  react-dom@19.0.0(react@19.0.0):
     dependencies:
-      loose-envify: 1.4.0
-      react: 18.3.1
-      scheduler: 0.23.2
+      react: 19.0.0
+      scheduler: 0.25.0
 
   react-is@16.13.1: {}
 
@@ -6186,16 +6190,14 @@ snapshots:
 
   react-is@18.2.0: {}
 
-  react-mock-component@3.1.0(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-mock-component@4.1.1(@types/react@18.3.17)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
-      '@types/react': 18.3.2
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      sinon: 14.0.0
+      '@types/react': 18.3.17
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+      sinon: 15.1.2
 
-  react@18.3.1:
-    dependencies:
-      loose-envify: 1.4.0
+  react@19.0.0: {}
 
   read-pkg-up@3.0.0:
     dependencies:
@@ -6298,9 +6300,7 @@ snapshots:
     dependencies:
       xmlchars: 2.2.0
 
-  scheduler@0.23.2:
-    dependencies:
-      loose-envify: 1.4.0
+  scheduler@0.25.0: {}
 
   semver@5.7.1: {}
 
@@ -6332,13 +6332,13 @@ snapshots:
 
   signal-exit@3.0.7: {}
 
-  sinon@14.0.0:
+  sinon@15.1.2:
     dependencies:
-      '@sinonjs/commons': 1.8.3
-      '@sinonjs/fake-timers': 9.1.2
-      '@sinonjs/samsam': 6.1.1
-      diff: 5.1.0
-      nise: 5.1.1
+      '@sinonjs/commons': 3.0.1
+      '@sinonjs/fake-timers': 10.3.0
+      '@sinonjs/samsam': 8.0.2
+      diff: 5.2.0
+      nise: 5.1.9
       supports-color: 7.2.0
 
   sisteransi@1.0.5: {}
@@ -6590,6 +6590,8 @@ snapshots:
       prelude-ls: 1.2.1
 
   type-detect@4.0.8: {}
+
+  type-detect@4.1.0: {}
 
   type-fest@0.18.1: {}
 
