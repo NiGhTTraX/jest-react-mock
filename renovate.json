@@ -1,8 +1,5 @@
 {
-  "extends": [
-    "config:base",
-    ":widenPeerDependencies"
-  ],
+  "extends": ["config:recommended", ":widenPeerDependencies"],
   "rangeStrategy": "replace",
   "automerge": true,
   "automergeType": "branch",
