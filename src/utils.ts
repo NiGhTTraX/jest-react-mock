@@ -1,4 +1,6 @@
-import { ReactMock } from 'react-mock-component';
+import type { ReactMock } from "react-mock-component";
+
+export type UnknownProps = Record<string, unknown>;
 
 export type DeepPartial<T> = T extends object
   ? { [K in keyof T]?: DeepPartial<T[K]> }
@@ -9,14 +11,14 @@ export type IndexedRender<Props> = [number, Props];
 /**
  * Recursively diff props, returning only the properties that differ.
  */
-export function diffProps<Props extends {}>(
+export function diffProps<Props extends UnknownProps>(
   actual: Props,
-  expected: DeepPartial<Props>
+  expected: DeepPartial<Props>,
 ): string {
   try {
     expect(actual).toMatchObject(expected);
 
-    return '';
+    return "";
   } catch (e) {
     // The error message will look like this:
     // Error: expect(received).toMatchObject(expected)
@@ -29,16 +31,16 @@ export function diffProps<Props extends {}>(
     // -   "b": 3,
     // +   "b": 2,
     //     }
-    return e.message.split('\n').slice(5).join('\n');
+    return e.message.split("\n").slice(5).join("\n");
   }
 }
 
 /**
  * Recursively match props.
  */
-export function deepEquals<Props extends {}>(
+export function deepEquals<Props extends UnknownProps>(
   received: Props,
-  expected: DeepPartial<Props>
+  expected: DeepPartial<Props>,
 ): boolean {
   try {
     // expect in expect, yeah.
@@ -50,9 +52,9 @@ export function deepEquals<Props extends {}>(
   }
 }
 
-export function getMatchingCalls<Props extends {}>(
+export function getMatchingCalls<Props extends UnknownProps>(
   mock: ReactMock<Props>,
-  expected: DeepPartial<Props>
+  expected: DeepPartial<Props>,
 ): IndexedRender<Props>[] {
   const matchingCalls: IndexedRender<Props>[] = [];
 
@@ -68,7 +70,7 @@ export function getMatchingCalls<Props extends {}>(
 export const printCall =
   <Props>(
     expected: DeepPartial<Props>,
-    printRender: (actual: Props, expected: DeepPartial<Props>) => string
+    printRender: (actual: Props, expected: DeepPartial<Props>) => string,
   ) =>
   ([i, received]: IndexedRender<Props>) =>
     `Render ${i}:${printRender(received, expected)}`;
@@ -76,4 +78,4 @@ export const printCall =
 const indentation = `    `;
 
 export const indent = (s: string) =>
-  `${indentation}${s.split('\n').join(`\n${indentation}`)}`;
+  `${indentation}${s.split("\n").join(`\n${indentation}`)}`;

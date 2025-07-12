@@ -1,16 +1,16 @@
-import stripAnsi from 'strip-ansi';
-import { diffProps } from '../src/utils';
+import stripAnsi from "strip-ansi";
+import { diffProps } from "../src/utils";
 
-describe('diffProps', () => {
-  it('should return empty for matching symmetric props', () => {
-    expect(diffProps({ a: 1 }, { a: 1 })).toEqual('');
+describe("diffProps", () => {
+  it("should return empty for matching symmetric props", () => {
+    expect(diffProps({ a: 1 }, { a: 1 })).toEqual("");
   });
 
-  it('should return empty for matching asymmetric props', () => {
-    expect(diffProps({ a: 1, b: 2 }, { a: 1 })).toEqual('');
+  it("should return empty for matching asymmetric props", () => {
+    expect(diffProps({ a: 1, b: 2 }, { a: 1 })).toEqual("");
   });
 
-  it('should diff symmetric props', () => {
+  it("should diff symmetric props", () => {
     expect(stripAnsi(diffProps({ a: 1, b: 2, c: 3 }, { a: 4, b: 5, c: 6 })))
       .toEqual(`  Object {
 -   "a": 4,
@@ -39,7 +39,7 @@ describe('diffProps', () => {
   }`);
   });
 
-  it('should diff asymmetric props', () => {
+  it("should diff asymmetric props", () => {
     expect(stripAnsi(diffProps({ a: 1, b: 2, c: 3 }, { a: 1, b: 4 })))
       .toEqual(`  Object {
     "a": 1,

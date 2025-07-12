@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import { reactMockMatcher } from './matcher';
+import { reactMockMatcher } from "./matcher";
 
 expect.extend(reactMockMatcher);
 

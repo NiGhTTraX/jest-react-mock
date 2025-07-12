@@ -1,15 +1,14 @@
 import CustomMatcherResult = jest.CustomMatcherResult;
 import MatcherContext = jest.MatcherContext;
-import { ReactMock } from 'react-mock-component';
+import type { ReactMock } from "react-mock-component";
+import type { DeepPartial, IndexedRender, UnknownProps } from "./utils";
 import {
   deepEquals,
-  DeepPartial,
   diffProps,
   getMatchingCalls,
   indent,
-  IndexedRender,
   printCall,
-} from './utils';
+} from "./utils";
 
 interface ReactMockExpect<Props> {
   /**
@@ -85,24 +84,28 @@ interface ReactMockExpect<Props> {
   toHaveProps(expected: DeepPartial<Props>): void;
 }
 
-type Result = CustomMatcherResult & { actual?: any; expected?: any };
+type Result = CustomMatcherResult & { actual?: unknown; expected?: unknown };
 
 type ReactMockMatcher = {
-  toBeMounted: (this: MatcherContext, mock: ReactMock<any>) => Result;
-  toHaveBeenRendered: (this: MatcherContext, mock: ReactMock<any>) => Result;
-  toHaveBeenRenderedWith: <Props extends {}>(
+  toBeMounted: (this: MatcherContext, mock: ReactMock<unknown>) => Result;
+  toHaveBeenRendered: (
     this: MatcherContext,
-    mock: ReactMock<Props>,
-    expected: DeepPartial<Props>
+    mock: ReactMock<unknown>,
   ) => Result;
-  toHaveProps: <Props extends {}>(
+  toHaveBeenRenderedWith: <Props extends UnknownProps>(
     this: MatcherContext,
     mock: ReactMock<Props>,
-    expected: DeepPartial<Props>
+    expected: DeepPartial<Props>,
+  ) => Result;
+  toHaveProps: <Props extends UnknownProps>(
+    this: MatcherContext,
+    mock: ReactMock<Props>,
+    expected: DeepPartial<Props>,
   ) => Result;
 };
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace jest {
     // noinspection JSUnusedGlobalSymbols
     interface Expect {
@@ -114,15 +117,15 @@ declare global {
 }
 
 export const reactMockMatcher: ReactMockMatcher = {
-  toBeMounted(this: MatcherContext, mock: ReactMock<any>) {
+  toBeMounted(this: MatcherContext, mock: ReactMock<unknown>) {
     const { isNot } = this;
     const { printReceived, matcherHint } = this.utils;
 
-    const hint = matcherHint('toBeMounted', `mock`, '', {
+    const hint = matcherHint("toBeMounted", `mock`, "", {
       isNot,
     });
     const expected = !isNot
-      ? 'Expected the mock to currently be mounted, but it is not.'
+      ? "Expected the mock to currently be mounted, but it is not."
       : `Expected the mock to currently not be mounted, but it is.`;
     const received = printReceived(mock.renderCalls.length);
 
@@ -138,24 +141,24 @@ Previous number of renders: ${received}`,
 
   toHaveBeenRendered(
     this: MatcherContext,
-    mock: ReactMock<any>,
-    times?: number
+    mock: ReactMock<unknown>,
+    times?: number,
   ) {
     const { isNot } = this;
     const { printExpected, printReceived, matcherHint } = this.utils;
 
-    const hint = matcherHint('toHaveBeenRendered', `mock`, '', {
+    const hint = matcherHint("toHaveBeenRendered", `mock`, "", {
       isNot,
     });
-    // eslint-disable-next-line no-nested-ternary
+
     const expected = isNot
       ? times === undefined
         ? `${printExpected(0)}`
         : `!= ${printExpected(times)}`
       : times === undefined
-      ? `>= ${printExpected(1)}`
-      : ` = ${printExpected(times)}`;
-    // eslint-disable-next-line no-nested-ternary
+        ? `>= ${printExpected(1)}`
+        : ` = ${printExpected(times)}`;
+
     const received = isNot
       ? times === undefined
         ? printReceived(mock.renderCalls.length)
@@ -173,10 +176,10 @@ Received number of renders: ${received}`,
     };
   },
 
-  toHaveBeenRenderedWith<Props extends {}>(
+  toHaveBeenRenderedWith<Props extends UnknownProps>(
     this: MatcherContext,
     mock: ReactMock<Props>,
-    expected: DeepPartial<Props>
+    expected: DeepPartial<Props>,
   ) {
     const { isNot } = this;
     const {
@@ -187,7 +190,7 @@ Received number of renders: ${received}`,
       RECEIVED_COLOR,
     } = this.utils;
 
-    const hint = matcherHint('toHaveBeenRenderedWith', `mock`, 'props', {
+    const hint = matcherHint("toHaveBeenRenderedWith", `mock`, "props", {
       isNot,
     });
 
@@ -201,7 +204,7 @@ Received number of renders: ${received}`,
 
     const intro = `${hint}
 
-Expected: ${isNot ? 'not ' : ''}${printExpected(expected)}
+Expected: ${isNot ? "not " : ""}${printExpected(expected)}
 Received:`;
 
     const outro = `
@@ -213,25 +216,25 @@ Total number of renders: ${mock.renderCalls.length}`;
       if (isOnlyCall) {
         return `${hint}
 
-${EXPECTED_COLOR('- Expected')}
-${RECEIVED_COLOR('+ Received')}
+${EXPECTED_COLOR("- Expected")}
+${RECEIVED_COLOR("+ Received")}
 
 ${diffProps(calls[0][1], expected)!}
 ${outro}`;
       }
 
       return `${intro}
-${EXPECTED_COLOR('- Expected')}
-${RECEIVED_COLOR('+ Received')}
+${EXPECTED_COLOR("- Expected")}
+${RECEIVED_COLOR("+ Received")}
 ${indent(
   calls
     .map(
       printCall(
         expected,
-        (actual, expected2) => `\n${diffProps(actual, expected2)}`
-      )
+        (actual, expected2) => `\n${diffProps(actual, expected2)}`,
+      ),
     )
-    .join(`\n`)
+    .join(`\n`),
 )}
 ${outro}`;
     };
@@ -243,7 +246,7 @@ ${outro}`;
 ${indent(
   matchingCalls
     .map(printCall(expected, (a) => ` ${printReceived(a)}`))
-    .join(`\n`)
+    .join(`\n`),
 )}
 ${outro}`,
       pass,
@@ -252,10 +255,10 @@ ${outro}`,
     };
   },
 
-  toHaveProps<Props extends {}>(
+  toHaveProps<Props extends UnknownProps>(
     this: MatcherContext,
     mock: ReactMock<Props>,
-    expected: DeepPartial<Props>
+    expected: DeepPartial<Props>,
   ) {
     const { isNot } = this;
     const {
@@ -266,7 +269,7 @@ ${outro}`,
       RECEIVED_COLOR,
     } = this.utils;
 
-    const hint = matcherHint('toHaveProps', `mock`, 'props', {
+    const hint = matcherHint("toHaveProps", `mock`, "props", {
       isNot,
     });
 
@@ -277,16 +280,16 @@ ${outro}`,
         !pass
           ? `${hint}
 
-${EXPECTED_COLOR('- Expected')}
-${RECEIVED_COLOR('+ Received')}
+${EXPECTED_COLOR("- Expected")}
+${RECEIVED_COLOR("+ Received")}
 
 ${diffProps(mock.lastProps, expected)}
 
 Number of renders: ${mock.renderCalls.length}`
           : `${hint}
 
-${EXPECTED_COLOR('Expected: ')}not ${printExpected(expected)}
-${RECEIVED_COLOR('Received: ')}${printReceived(mock.lastProps)}
+${EXPECTED_COLOR("Expected: ")}not ${printExpected(expected)}
+${RECEIVED_COLOR("Received: ")}${printReceived(mock.lastProps)}
 
 Number of renders: ${mock.renderCalls.length}`,
       pass,
