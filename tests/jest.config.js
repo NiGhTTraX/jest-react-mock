@@ -1,7 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports,no-undef
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const baseConfig = require("@tdd-buffet/jest-config");
 
-// eslint-disable-next-line no-undef
 module.exports = {
   ...baseConfig,
 };
