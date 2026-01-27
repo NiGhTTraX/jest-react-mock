@@ -29,28 +29,29 @@
     "prepublishOnly": "pnpm run build",
     "release": "standard-version",
     "lint": "eslint .",
-    "test": "jest --config tests/jest.config.js --coverage"
+    "test": "jest --config tests/jest.config.ts --coverage"
   },
   "peerDependencies": {
-    "@types/jest": "^26.0.0 || ^27.0.0 || ^28.0.0 || ^29.0.0",
-    "jest": "^26.0.1 || ^27.0.0 || ^28.0.0 || ^29.0.0",
+    "@types/jest": "^26.0.0 || ^27.0.0 || ^28.0.0 || ^29.0.0 || ^30.0.0",
+    "jest": "^26.0.1 || ^27.0.0 || ^28.0.0 || ^29.0.0 || ^30.0.0",
     "react-mock-component": "^3.0.0 || ^4.0.0"
   },
   "devDependencies": {
     "@nighttrax/eslint-config-tsx": "~12.3.0",
-    "@tdd-buffet/jest-config": "~6.0.0",
     "@tdd-buffet/tsconfig": "~1.0.4",
     "@testing-library/react": "~16.3.0",
-    "@types/jest": "~29.5.0",
+    "@types/jest": "~30.0.0",
     "@types/react": "~19.2.0",
     "eslint": "~9.39.0",
     "prettier": "~3.7.0",
-    "jest": "~29.7.0",
+    "jest": "~30.0.5",
+    "jest-environment-jsdom": "~30.0.5",
     "react": "~19.2.0",
     "react-dom": "~19.2.0",
     "react-mock-component": "~4.1.1",
     "standard-version": "~9.5.0",
     "strip-ansi": "~6.0.0",
+    "ts-jest": "~29.4.6",
     "typescript": "~5.9.0"
   },
   "packageManager": "pnpm@10.28.0"
