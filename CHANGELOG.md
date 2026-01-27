@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/NiGhTTraX/jest-react-mock/compare/v3.1.2...v3.3.0) (2026-01-27)
+
+
+### Features
+
+* Support jest 30 ([652a96c](https://github.com/NiGhTTraX/jest-react-mock/commit/652a96c1400fe937c4ac48ea03cf9f77f2d3acc4))
+* Support react-mock-component v4 ([d780a75](https://github.com/NiGhTTraX/jest-react-mock/commit/d780a75a8c6f986b62710c405ae18d8b3f5e0476))
+
 ## [3.2.0](https://github.com/NiGhTTraX/jest-react-mock/compare/v3.1.2...v3.2.0) (2025-03-02)
 
 
