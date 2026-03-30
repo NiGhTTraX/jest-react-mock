@@ -34,7 +34,7 @@
   "peerDependencies": {
     "@types/jest": "^26.0.0 || ^27.0.0 || ^28.0.0 || ^29.0.0 || ^30.0.0",
     "jest": "^26.0.1 || ^27.0.0 || ^28.0.0 || ^29.0.0 || ^30.0.0",
-    "react-mock-component": "^3.0.0 || ^4.0.0"
+    "react-mock-component": "^3.0.0 || ^4.0.0 || ^5.0.0"
   },
   "devDependencies": {
     "@nighttrax/eslint-config-tsx": "~12.3.0",
@@ -49,7 +49,7 @@
     "jest-environment-jsdom": "~30.3.0",
     "react": "~19.2.0",
     "react-dom": "~19.2.0",
-    "react-mock-component": "~4.1.1",
+    "react-mock-component": "~5.0.0",
     "standard-version": "~9.5.0",
     "strip-ansi": "~6.0.0",
     "ts-jest": "~29.4.6",
