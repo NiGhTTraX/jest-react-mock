@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es6",
+    "target": "es2024",
     "strict": true,
-    "lib": ["es6", "es2017", "dom"],
+    "lib": ["ES2024", "DOM"],
     "jsx": "react-jsx",
     "types": ["jest"],
     "skipLibCheck": true,
