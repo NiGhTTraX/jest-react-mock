@@ -1,6 +1,8 @@
 import { createDefaultPreset, type JestConfigWithTsJest } from "ts-jest";
 
-const preset = createDefaultPreset();
+const preset = createDefaultPreset({
+  tsconfig: "<rootDir>/tsconfig.tests.json",
+});
 
 const config: JestConfigWithTsJest = {
   ...preset,

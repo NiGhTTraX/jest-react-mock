@@ -31,6 +31,7 @@ export function diffProps<Props extends UnknownProps>(
     // -   "b": 3,
     // +   "b": 2,
     //     }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
     return e.message.split("\n").slice(5).join("\n");
   }
 }

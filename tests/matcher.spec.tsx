@@ -9,6 +9,7 @@ function expectToThrowAnsiless(cb: () => void, message: string) {
   try {
     cb();
   } catch (e) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
     expect(stripAnsi(e.message)).toEqual(message);
   }
 }
@@ -17,7 +18,7 @@ describe("jest-react-mock", () => {
   expect.extend(reactMockMatcher);
 
   describe("toBeMounted", () => {
-    it("should check that a mock is currently mounted", async () => {
+    it("should check that a mock is currently mounted", () => {
       const Mock = createReactMock();
       Mock.withProps({}).renders(<span>foo</span>);
 
@@ -210,6 +211,7 @@ Received number of renders:    1`,
       render(<Mock foo="baz" bar={[7, 8, 9]} />);
 
       expect(Mock).toHaveBeenRenderedWith(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-assignment
         expect.objectContaining({ bar: expect.arrayContaining([4, 6]) }),
       );
     });
@@ -227,7 +229,9 @@ Received number of renders:    1`,
       try {
         shouldThrow();
       } catch (e) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         expect(e.matcherResult.actual).toEqual({ foo: "bar" });
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         expect(e.matcherResult.expected).toEqual({ foo: "baz" });
       }
 
@@ -238,7 +242,9 @@ Received number of renders:    1`,
       try {
         shouldThrow();
       } catch (e) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         expect(e.matcherResult.actual).toBeUndefined();
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         expect(e.matcherResult.expected).toBeUndefined();
       }
     });
@@ -347,7 +353,9 @@ Total number of renders: 1`,
       try {
         shouldThrow();
       } catch (e) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         expect(e.matcherResult.actual).toEqual({ foo: "bar" });
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         expect(e.matcherResult.expected).toEqual({ foo: "baz" });
       }
     });
@@ -369,6 +377,7 @@ Total number of renders: 1`,
       render(<Mock foo="bar" bar={[1, 2, 3]} />);
 
       expect(Mock).toHaveProps(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-assignment
         expect.objectContaining({ bar: expect.arrayContaining([2, 3]) }),
       );
     });

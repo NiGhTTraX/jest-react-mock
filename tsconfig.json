@@ -1,11 +1,8 @@
 {
-  "extends": "@tdd-buffet/tsconfig",
-
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "types": ["jest"],
-    // TODO: we catch JestAssertionError but the type is not available for import
-    // see https://github.com/facebook/jest/issues/9919
-    "useUnknownInCatchVariables": false
-  }
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.tests.json" },
+    { "path": "./tsconfig.eslint.json" },
+  ]
 }

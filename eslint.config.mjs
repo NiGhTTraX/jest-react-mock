@@ -1,3 +1,7 @@
 import { nighttraxReact } from "@nighttrax/eslint-config-tsx";
 
-export default nighttraxReact([{ ignores: ["dist"] }]);
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+export default nighttraxReact([], {
+  ignores: ["dist", "tests/results"],
+  devDeps: ["jest.config.ts"],
+});

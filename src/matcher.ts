@@ -1,5 +1,3 @@
-import CustomMatcherResult = jest.CustomMatcherResult;
-import MatcherContext = jest.MatcherContext;
 import type { ReactMock } from "react-mock-component";
 import type { DeepPartial, IndexedRender, UnknownProps } from "./utils";
 import {
@@ -9,6 +7,8 @@ import {
   indent,
   printCall,
 } from "./utils";
+import CustomMatcherResult = jest.CustomMatcherResult;
+import MatcherContext = jest.MatcherContext;
 
 interface ReactMockExpect<Props> {
   /**
@@ -107,8 +107,8 @@ type ReactMockMatcher = {
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace jest {
-    // noinspection JSUnusedGlobalSymbols
     interface Expect {
+      // eslint-disable-next-line @typescript-eslint/prefer-function-type
       <Props>(mock: ReactMock<Props>): ReactMockExpect<Props> & {
         not: ReactMockExpect<Props>;
       };
@@ -219,7 +219,7 @@ Total number of renders: ${mock.renderCalls.length}`;
 ${EXPECTED_COLOR("- Expected")}
 ${RECEIVED_COLOR("+ Received")}
 
-${diffProps(calls[0][1], expected)!}
+${diffProps(calls[0][1], expected)}
 ${outro}`;
       }
 
